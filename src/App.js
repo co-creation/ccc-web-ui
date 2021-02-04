@@ -1,5 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+// Modules
+import React, { useEffect } from 'react'
+
+import { Realm } from './api'
+
+import logo from './logo.svg'
+import './App.css'
 
 function App() {
   return (
@@ -22,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
