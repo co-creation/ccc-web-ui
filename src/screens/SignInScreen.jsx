@@ -1,10 +1,11 @@
 import React from "react"
 import * as Realm from "realm-web"
 import validator from "validator"
-import { 
-  Spinner, 
-  Flex, 
-  Input, 
+import { useHistory } from "react-router-dom"
+import {
+  Spinner,
+  Flex,
+  Input,
   FormErrorMessage,
   FormLabel,
   FormControl,
@@ -17,94 +18,96 @@ import { useRealmApp } from "../RealmApp"
 
 export default function SignInScreen() {
   const app = useRealmApp()
-  
+  const history = useHistory()
+
   // Toggle between logging users in and registering new users
-  const [mode, setMode] = React.useState( "login" )
+  const [mode, setMode] = React.useState("login")
   const toggleMode = () => {
-    setMode( ( oldMode ) => ( oldMode === "login" ? "register" : "login" ) )
+    setMode((oldMode) => (oldMode === "login" ? "register" : "login"))
   }
 
-  const [isLoggingIn, setIsLoggingIn] = React.useState( false )
-  const handleLogin = async ( email, password ) => {
-    setIsLoggingIn( true )
+  const [isLoggingIn, setIsLoggingIn] = React.useState(false)
+  const handleLogin = async (email, password) => {
+    setIsLoggingIn(true)
     // setError( ( e ) => ( { ...e, password: null } ) )
     try {
-      await app.logIn( Realm.Credentials.emailPassword( email, password ) )
-    } catch ( err ) {
-      setIsLoggingIn( false )
-      console.error( err ) // todo deal with this error 
+      await app.logIn(Realm.Credentials.emailPassword(email, password))
+      history.push('/welcome')
+    } catch (err) {
+      setIsLoggingIn(false)
+      console.error(err) // todo deal with this error 
       // handleAuthenticationError( err, setError )
     }
   }
 
-  const handleRegistrationAndLogin = async ( email, password ) => {
-    const isValidEmailAddress = validator.isEmail( email )
+  const handleRegistrationAndLogin = async (email, password) => {
+    const isValidEmailAddress = validator.isEmail(email)
     // setError( ( e ) => ( { ...e, password: null } ) )
-    
-    if ( isValidEmailAddress ) {
+
+    if (isValidEmailAddress) {
       try {
         // Register the user and, if successful, log them in
-        await app.emailPasswordAuth.registerUser( email, password ) 
-        return await handleLogin( email, password )
-      } catch ( err ) {
+        await app.emailPasswordAuth.registerUser(email, password)
+        return await handleLogin(email, password)
+      } catch (err) {
         // todo handle this error 
-        console.error( err )
+        console.error(err)
         // handleAuthenticationError( err, setError )
       }
     } else {
-      console.error( 'Invalid Email', email )
+      console.error('Invalid Email', email)
     }
   }
 
   const { handleSubmit, errors, register, formState } = useForm()
 
-  function validateEmail( value ) {
+  function validateEmail(value) {
     return true;
   }
 
-  function validatePassword( value ) {
+  function validatePassword(value) {
     return true;
   }
 
 
-  function onSubmit( { email, password } ) {
-    if ( mode === "login" ) {
-      handleLogin( email, password )
-      console.log( 'logging in...' )
+  function onSubmit({ email, password }) {
+    if (mode === "login") {
+      handleLogin(email, password)
+      console.log('logging in...')
     }
     else {
-      handleRegistrationAndLogin( email, password )
-      console.log( 'registering user and logging in...' )
+      handleRegistrationAndLogin(email, password)
+      console.log('registering user and logging in...')
     }
   }
 
   return (
     <Flex
-    direction="column"
-    align="center"
-    maxW={{ xl: "1200px" }}
-    m="0 auto">
+      direction="column"
+      align="center"
+      maxW={{ xl: "1200px" }}
+      m="0 auto">
       {isLoggingIn && (
-        <Spinner 
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"/>
-      )} 
-      <form onSubmit={handleSubmit( onSubmit )}>
-        <FormControl isInvalid={errors.name}>  
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl" />
+      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isInvalid={errors.name}>
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             name="email"
             placeholder="email@internet.com"
-            ref={register( { validate: validateEmail } )}
+            ref={register({ validate: validateEmail })}
           />
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             name="password"
             placeholder="**********"
-            ref={register( { validate: validatePassword } )}
+            ref={register({ validate: validatePassword })}
           />
           <FormErrorMessage>
             {errors.name && errors.name.message}
