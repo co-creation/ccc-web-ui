@@ -1,7 +1,9 @@
 import SignInScreen from './SignInScreen'
-import WelcomeScreen from './WelcomeScreen'
+import HomeScreen from './HomeScreen'
+import BookAccomodationScreen from './BookAccomodationScreen'
 
 export {
   SignInScreen,
-  WelcomeScreen
+  HomeScreen,
+  BookAccomodationScreen,
 }

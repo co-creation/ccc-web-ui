@@ -4,10 +4,11 @@ import { ChakraProvider } from "@chakra-ui/react"
 
 import AppRoot from "./AppRoot"
 import * as serviceWorker from "./serviceWorker"
+import customTheme from "./utils/theme"
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={customTheme}>
       <AppRoot />
     </ChakraProvider>
   </React.StrictMode>,

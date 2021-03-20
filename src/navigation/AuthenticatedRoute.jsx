@@ -9,23 +9,27 @@ import { useRealmApp } from "../RealmApp"
  * @returns {ReactNode}
  */
 export default function AuthenticatedRoute( { children, ...rest } ) {
-    let app = useRealmApp()
+  let app = useRealmApp()
+  return (
+    <Route
+      {...rest}
+      render={( { location } ) => {
 
-    return (
-        <Route
-            {...rest}
-            render={( { location } ) =>
-                app.currentUser ? (
-                    children
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: "/signin",
-                            state: { from: location }
-                        }}
-                    />
-                )
-            }
-        />
-    )
+        if ( app.currentUser ) {
+          // user is authenticated
+          return children 
+        }
+
+        // user is not authenticated
+        return (
+          <Redirect
+            to={{
+              pathname: "/signin",
+              state: { from: location },
+            }}
+            />
+        )
+      }}
+    />
+  )
 }

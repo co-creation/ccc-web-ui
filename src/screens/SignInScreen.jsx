@@ -3,7 +3,6 @@ import * as Realm from "realm-web"
 import validator from "validator"
 import { useHistory } from "react-router-dom"
 import {
-  Spinner,
   Flex,
   Input,
   FormErrorMessage,
@@ -11,6 +10,8 @@ import {
   FormControl,
   Button,
   ButtonGroup,
+  Box,
+  Heading,
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
@@ -32,7 +33,7 @@ export default function SignInScreen() {
     // setError( ( e ) => ( { ...e, password: null } ) )
     try {
       await app.logIn( Realm.Credentials.emailPassword( email, password ) )
-      history.push( '/welcome' )
+      history.push( '/home' )
     } catch ( err ) {
       setIsLoggingIn( false )
       console.error( err ) // todo deal with this error 
@@ -85,50 +86,56 @@ export default function SignInScreen() {
     <Flex
       direction="column"
       align="center"
+      justify="center"
+      h="100%"
       maxW={{ xl: "1200px" }}
       m="0 auto">
-      {isLoggingIn && (
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl" />
-      )}
+      <Heading 
+        as="h2" 
+        size="lg" 
+        p="16px">
+          The Co-Creation Castle
+      </Heading>
+      <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
       <form onSubmit={handleSubmit( onSubmit )}>
-        <FormControl isInvalid={errors.name}>
+        <FormControl isRequired isInvalid={errors.email}>
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             name="email"
-            placeholder="email@internet.com"
+            placeholder="siena@gmail.com"
             ref={register( { validate: validateEmail } )}
           />
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             name="password"
             placeholder="**********"
+            type="password"
             ref={register( { validate: validatePassword } )}
           />
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.email?.message}
           </FormErrorMessage>
         </FormControl>
         <ButtonGroup variant="solid" spacing="6">
           <Button
+            isLoading={formState.isSubmitting || isLoggingIn}
+            loadingText={mode === 'login' ? 'Signing In...' : 'Registering...'}
             mt={4}
-            colorScheme="cyan"
-            isLoading={formState.isSubmitting}
+            w="40"
+            colorScheme="green"
             type="submit">
             {mode === 'login' ? 'Sign In' : 'Register'}
           </Button>
           <Button
             mt={4}
+            w="40"
             colorScheme="blue"
             onClick={toggleMode}>
             {mode === 'login' ? 'Register Instead' : 'Sign In Instead'}
           </Button>
         </ButtonGroup>
       </form>
+      </Box>
     </Flex>
   )
 }

@@ -21,6 +21,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^13.0.0",
+    "airtable": "^0.10.1",
     "framer-motion": "^3.10.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
