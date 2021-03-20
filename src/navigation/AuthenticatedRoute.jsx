@@ -8,13 +8,13 @@ import { useRealmApp } from "../RealmApp"
  * @param {Object} props
  * @returns {ReactNode}
  */
-export default function AuthenticatedRoute({ children, ...rest }) {
+export default function AuthenticatedRoute( { children, ...rest } ) {
     let app = useRealmApp()
 
     return (
         <Route
             {...rest}
-            render={({ location }) =>
+            render={( { location } ) =>
                 app.currentUser ? (
                     children
                 ) : (
