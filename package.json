@@ -9,7 +9,9 @@
     "eject": "react-scripts eject",
     "checkUpdates": "npx npm-check-updates -i",
     "lint": "find ./src -name \\*.js | xargs eslint --cache --cache-location node_modules/.cache/.eslintcache --report-unused-disable-directives",
-    "lintFix": "npm run lint --fix"
+    "lintFix": "npm run lint --fix",
+    "clean": "rm -fr build",
+    "deploy" : "npm run clean && npm run build && firebase use cccode && firebase deploy --only hosting:co-creation && npm run clean"
   },
   "dependencies": {
     "@apollo/client": "^3.3.12",
@@ -18,6 +20,8 @@
     "@chakra-ui/theme-tools": "^1.1.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.13.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^13.0.0",

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "cccode"
+  },
+ "targets": {
+    "ccode": {
+      "hosting": {
+        "co-creation": [
+          "co-creation"
+        ]
+      }
+    }
+  }
+}

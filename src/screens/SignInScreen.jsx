@@ -1,6 +1,6 @@
 import React from "react"
 import * as Realm from "realm-web"
-import validator from "validator"
+import validate from 'validator'
 import { useHistory } from "react-router-dom"
 import {
   Flex,
@@ -9,7 +9,6 @@ import {
   FormLabel,
   FormControl,
   Button,
-  ButtonGroup,
   Box,
   Heading,
 } from "@chakra-ui/react"
@@ -20,12 +19,6 @@ import { useRealmApp } from "../RealmApp"
 export default function SignInScreen() {
   const app = useRealmApp()
   const history = useHistory()
-
-  // Toggle between logging users in and registering new users
-  const [mode, setMode] = React.useState( "login" )
-  const toggleMode = () => {
-    setMode( ( oldMode ) => ( oldMode === "login" ? "register" : "login" ) )
-  }
 
   const [isLoggingIn, setIsLoggingIn] = React.useState( false )
   const handleLogin = async ( email, password ) => {
@@ -41,45 +34,11 @@ export default function SignInScreen() {
     }
   }
 
-  const handleRegistrationAndLogin = async ( email, password ) => {
-    const isValidEmailAddress = validator.isEmail( email )
-    // setError( ( e ) => ( { ...e, password: null } ) )
-
-    if ( isValidEmailAddress ) {
-      try {
-        // Register the user and, if successful, log them in
-        await app.emailPasswordAuth.registerUser( email, password )
-        return await handleLogin( email, password )
-      } catch ( err ) {
-        // todo handle this error 
-        console.error( err )
-        // handleAuthenticationError( err, setError )
-      }
-    } else {
-      console.error( 'Invalid Email', email )
-    }
-  }
-
   const { handleSubmit, errors, register, formState } = useForm()
 
-  function validateEmail( value ) {
-    return true;
-  }
-
-  function validatePassword( value ) {
-    return true;
-  }
-
-
   function onSubmit( { email, password } ) {
-    if ( mode === "login" ) {
-      handleLogin( email, password )
-      console.log( 'logging in...' )
-    }
-    else {
-      handleRegistrationAndLogin( email, password )
-      console.log( 'registering user and logging in...' )
-    }
+    handleLogin( email, password )
+    console.log( 'logging in...' )
   }
 
   return (
@@ -96,51 +55,47 @@ export default function SignInScreen() {
         p="16px">
           The Co-Creation Castle
       </Heading>
-      <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+      <Box p={8} w="350px" borderWidth={1} borderRadius={8} boxShadow="lg">
       <form onSubmit={handleSubmit( onSubmit )}>
         <FormControl isRequired isInvalid={errors.email}>
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             name="email"
             placeholder="siena@gmail.com"
-            ref={register( { validate: validateEmail } )}
-          />
-          <FormLabel htmlFor="password">Password</FormLabel>
-          <Input
-            name="password"
-            placeholder="**********"
-            type="password"
-            ref={register( { validate: validatePassword } )}
+            ref={register( { validate: validate.isEmail } )}
           />
           <FormErrorMessage>
             {errors.email?.message}
           </FormErrorMessage>
         </FormControl>
-        <ButtonGroup variant="solid" spacing="6">
+        <FormControl isRequired isInvalid={errors.password}>
+        <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            name="password"
+            placeholder="**********"
+            type="password"
+            ref={register( { validate: () => { return true } } )}
+          />
+          <FormErrorMessage>
+            {errors.password?.message}
+          </FormErrorMessage>
+        </FormControl>
+      
           <Button
             isLoading={formState.isSubmitting || isLoggingIn}
-            loadingText={mode === 'login' ? 'Signing In...' : 'Registering...'}
+            loadingText="Signing In..."
             mt={4}
-            w="40"
-            colorScheme="green"
+            w="100%"
+            colorScheme="primary"
             type="submit">
-            {mode === 'login' ? 'Sign In' : 'Register'}
+            Sign In
           </Button>
-          <Button
-            mt={4}
-            w="40"
-            colorScheme="blue"
-            onClick={toggleMode}>
-            {mode === 'login' ? 'Register Instead' : 'Sign In Instead'}
-          </Button>
-        </ButtonGroup>
       </form>
       </Box>
     </Flex>
   )
 }
 
-// TODO start using these parsers 
 // function handleAuthenticationError( err, setError ) {
 //   const { status, message } = parseAuthenticationError( err )
 //   const errorType = message || status

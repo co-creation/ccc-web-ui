@@ -1,11 +1,11 @@
 import React from "react"
 
 import Hero from "../components/Hero"
-import LandingLayout from "../components/Layout"
+import Layout from "../components/Layout"
 
 export default function HomeScreen() {
   return (
-    <LandingLayout>
+    <Layout>
       <Hero
         title="Welcome to The Co-Creation Castle"
         subtitle="Join other young, creative adults from diverse backgrounds to co-create lives of wellbeing."
@@ -13,6 +13,6 @@ export default function HomeScreen() {
         ctaText="Book Accomodation"
         ctaLink="/book"
       />
-    </LandingLayout>
+    </Layout>
   )
 }

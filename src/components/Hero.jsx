@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from "react"
+import { Link } from "react-router-dom"
+import PropTypes from "prop-types"
 import {
   Box,
   Button,
@@ -9,7 +9,7 @@ import {
   Heading,
   Stack,
   Text
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
 export default function Hero( {
   title,
@@ -82,7 +82,7 @@ export default function Hero( {
         <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
       </Box>
     </Flex>
-  );
+  )
 }
 
 Hero.propTypes = {
@@ -91,7 +91,7 @@ Hero.propTypes = {
   image: PropTypes.string,
   ctaText: PropTypes.string,
   ctaLink: PropTypes.string
-};
+}
 
 Hero.defaultProps = {
   title: "React landing page with Chakra UI",
@@ -100,4 +100,4 @@ Hero.defaultProps = {
   image: "https://source.unsplash.com/collection/404339/800x600",
   ctaText: "Create your account now",
   ctaLink: "/signup"
-};
+}

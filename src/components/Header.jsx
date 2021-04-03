@@ -81,6 +81,7 @@ const Header = ( props ) => {
         >
           <MenuItem to="/home">Home</MenuItem>
           <MenuItem to="/book">Accomodation</MenuItem>
+          <MenuItem to="/payment">Payment</MenuItem>
           <MenuItem to="/meal-plan">Meal Plan</MenuItem>
           <MenuItem to="/resources">Guides & Resources</MenuItem>
           <MenuItem to="/signin" isLast>
