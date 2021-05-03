@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
  */
 export default function LinkButton( props ) { 
   
-  const { to, children, rest } = props 
+  const { to, children, ...rest } = props 
   
   return ( 
     <Link to={to}>

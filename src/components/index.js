@@ -4,6 +4,7 @@ import Hero from './Hero'
 import Logo from './Logo'
 import TextCard from './TextCard'
 import LinkButton from './LinkButton'
+import ConfirmationAlertDialog from './ConfirmationAlertDialog'
 
 export { 
   Layout,
@@ -12,4 +13,5 @@ export {
   Logo,
   TextCard,
   LinkButton,
+  ConfirmationAlertDialog,
 }

@@ -1,7 +1,7 @@
-import React from "react"
-import * as Realm from "realm-web"
+import React from 'react'
+import * as Realm from 'realm-web'
 import validate from 'validator'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
 import {
   Flex,
   Input,
@@ -11,16 +11,19 @@ import {
   Button,
   Box,
   Heading,
-} from "@chakra-ui/react"
-import { useForm } from "react-hook-form"
+  useToast
+} from '@chakra-ui/react'
+import { useForm } from 'react-hook-form'
 
-import { useRealmApp } from "../RealmApp"
+import { useRealmApp } from '../RealmApp'
 
 export default function SignInScreen() {
+
   const app = useRealmApp()
   const history = useHistory()
+  const toast = useToast()
 
-  const [isLoggingIn, setIsLoggingIn] = React.useState( false )
+  const [ isLoggingIn, setIsLoggingIn ] = React.useState( false )
   const handleLogin = async ( email, password ) => {
     setIsLoggingIn( true )
     // setError( ( e ) => ( { ...e, password: null } ) )
@@ -29,6 +32,13 @@ export default function SignInScreen() {
       history.push( '/home' )
     } catch ( err ) {
       setIsLoggingIn( false )
+      toast( {
+        title: "Incorrect Email or Password",
+        description: "Are you sure your email and password are correct? Check your welcome email and try again. Reach out to cocreationcastle@gmail.com if you need any help.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      } )
       console.error( err ) // todo deal with this error 
       // handleAuthenticationError( err, setError )
     }
@@ -62,6 +72,7 @@ export default function SignInScreen() {
           <Input
             name="email"
             placeholder="siena@gmail.com"
+            autoComplete="email"
             ref={register( { validate: validate.isEmail } )}
           />
           <FormErrorMessage>
@@ -74,7 +85,8 @@ export default function SignInScreen() {
             name="password"
             placeholder="**********"
             type="password"
-            ref={register( { validate: () => { return true } } )}
+            autoComplete="password"
+            ref={register()}
           />
           <FormErrorMessage>
             {errors.password?.message}

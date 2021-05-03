@@ -68,7 +68,6 @@ export const AirtableProvider = ( { children } ) => {
        } )
       //  // Only pass down the record data to make it read only 
       //  const userBookingData = userBookingRecords.map( record => record.fields )
-      console.log( 'New bookings after query', userBookingRecords )
       setUserBookings( userBookingRecords )
     } )
   },

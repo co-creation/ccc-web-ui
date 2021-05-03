@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Button, HStack } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+import { useHistory } from 'react-router-dom'
 
 import { useAirtable } from '../airtable/AirtableApp'
 
-import { Layout, TextCard, LinkButton } from '../components'
-// import styles from './styles/BookingScreen.module.css'
+import { Layout, TextCard, LinkButton, ConfirmationAlertDialog } from '../components'
 
 export default function BookingScreen() {
 
@@ -72,7 +72,9 @@ export default function BookingScreen() {
   )
 }
 
-// Screen Elements
+/**
+ * Screen Helper Elements
+ */
 
 function Header( props ) {
 
@@ -124,6 +126,8 @@ function AirtableViews( props ) {
 
   const { hasOutstandingBooking, paymentRate } = props
 
+  const history = useHistory()
+
   if ( !paymentRate ) {
     return ( 
       <iframe 
@@ -146,24 +150,38 @@ function AirtableViews( props ) {
     <>
       <iframe 
         title="Available Bed Spots"
-        className="airtable-embed" 
+        className="airtable-embed"
         src="https://airtable.com/embed/shrufAIqyvSDeVRZX?backgroundColor=greenLight&viewControls=on" 
         frameBorder="0" 
         width="100%" 
         height="533" 
-      // className={styles.airtableView}
       >
     </iframe>
     <iframe 
       title="Booking Form"
-      className="airtable-embed airtable-dynamic-height"
+      className="airtable-embed"
       src="https://airtable.com/embed/shrNMNH2cqimeNOaa?backgroundColor=greenLight" 
       frameBorder="0" 
       width="100%" 
-      height="900"
-      // className={styles.airtableView}
+      height="750"
       >
       </iframe>
+      {/* <LinkButton 
+        to="/pay"
+        marginTop="10"
+        marginBottom="10"
+        size="lg"
+        >
+        Complete Booking
+      </LinkButton> */}
+      <ConfirmationAlertDialog
+        onConfirm={() => history.push( '/pay' )} 
+        headerText="Did you Submit your Booking Request?" 
+        bodyText="This app is a work in progress, and we're just making sure you clicked 'Submit' on the Booking form before continuing. If you did, no worries — please continue! If not, please finish your booking request before proceeding to the Payment screen." 
+        cancelText="I Still Need to Submit" 
+        actionText="Continue to Payment"
+        triggerText="Continue to Payment"   
+      />
     </>
   )
 }
