@@ -1,16 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import PropTypes from "prop-types"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import {
   Box,
   Button,
   Flex,
   Image,
   Heading,
-  Stack,
-  Text
-} from "@chakra-ui/react"
-
+  Stack
+} from '@chakra-ui/react'
 export default function Hero( {
   title,
   subtitle,
@@ -19,6 +17,7 @@ export default function Hero( {
   ctaText,
   ...rest
 } ) {
+
   return (
     <Flex
       align="center"
@@ -39,7 +38,6 @@ export default function Hero( {
           as="h1"
           size="xl"
           fontWeight="bold"
-          color="primary.800"
           textAlign={["center", "center", "left", "left"]}
         >
           {title}
@@ -47,7 +45,6 @@ export default function Hero( {
         <Heading
           as="h2"
           size="md"
-          color="primary.800"
           opacity="0.8"
           fontWeight="normal"
           lineHeight={1.5}
@@ -58,7 +55,7 @@ export default function Hero( {
         <Link to={ctaLink}>
           <Button
             colorScheme="primary"
-            borderRadius="8px"
+            borderRadius="20px"
             py="4"
             px="4"
             lineHeight="1"
@@ -67,17 +64,10 @@ export default function Hero( {
             {ctaText}
           </Button>
         </Link>
-        <Text
-          fontSize="xs"
-          mt={2}
-          textAlign="center"
-          color="primary.800"
-          opacity="0.6"
-        >
-          Mutual aid available to qualifying applicants.
-        </Text>
       </Stack>
-      <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
+      <Box 
+        w={{ base: "80%", sm: "60%", md: "50%" }} 
+        mb={{ base: 12, md: 0 }}>
         {/* TODO: Make this change every X secs */}
         <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
       </Box>
@@ -91,13 +81,4 @@ Hero.propTypes = {
   image: PropTypes.string,
   ctaText: PropTypes.string,
   ctaLink: PropTypes.string
-}
-
-Hero.defaultProps = {
-  title: "React landing page with Chakra UI",
-  subtitle:
-    "This is the subheader section where you describe the basic benefits of your product",
-  image: "https://source.unsplash.com/collection/404339/800x600",
-  ctaText: "Create your account now",
-  ctaLink: "/signup"
 }

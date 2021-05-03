@@ -53,7 +53,7 @@ export default function SignInScreen() {
         as="h2" 
         size="lg" 
         p="16px">
-          The Co-Creation Castle
+          The Co-Creation C_
       </Heading>
       <Box p={8} w="350px" borderWidth={1} borderRadius={8} boxShadow="lg">
       <form onSubmit={handleSubmit( onSubmit )}>

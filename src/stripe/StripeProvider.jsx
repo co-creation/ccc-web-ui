@@ -5,6 +5,14 @@ import Config from '../Config'
 
 const stripePromise = loadStripe( Config.STRIPE_API_KEY )
 
+const ELEMENTS_OPTIONS = {
+  fonts: [
+    {
+      cssSrc: "https://fonts.googleapis.com/css?family=Montserrat"
+    }
+  ]
+}
+
 /**
  * @function StripeProvider Provide access within children components to the authenticated Stripe object
  * @param {Array} props.children 
@@ -12,7 +20,10 @@ const stripePromise = loadStripe( Config.STRIPE_API_KEY )
  */
 const StripeProvider = ( { children } ) => {
   return (
-    <Elements stripe={stripePromise}>
+    <Elements 
+      stripe={stripePromise}
+      options={ELEMENTS_OPTIONS}
+      >
       {children}
     </Elements>
   )

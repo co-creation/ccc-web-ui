@@ -1,10 +1,8 @@
-import React from "react"
+import React from 'react'
 
-import App from "./App"
+import App from './App'
 import Config from './Config'
-import { RealmAppProvider } from "./RealmApp"
-
-
+import { RealmAppProvider } from './RealmApp'
 
 export default function AppRoot() {
   return (

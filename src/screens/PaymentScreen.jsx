@@ -1,6 +1,6 @@
 import React from "react"
-import { Flex, Button, Box } from '@chakra-ui/react'
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
+import { Button, Box } from '@chakra-ui/react'
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 
 import Layout from "../components/Layout"
 

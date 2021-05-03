@@ -1,11 +1,11 @@
 import SignInScreen from './SignInScreen'
 import HomeScreen from './HomeScreen'
-import BookAccomodationScreen from './BookAccomodationScreen'
-import CheckoutScreen from './CheckoutScreen'
+import BookingScreen from './BookingScreen'
+import PaymentScreen from './PaymentScreen'
 
 export {
   SignInScreen,
   HomeScreen,
-  BookAccomodationScreen,
-  CheckoutScreen,
+  BookingScreen,
+  PaymentScreen,
 }

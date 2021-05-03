@@ -9,7 +9,7 @@ import {
 
 // Create an ApolloClient that connects to the provided Realm.App's GraphQL API
 const createRealmApolloClient = ( app ) => {
-  console.log( 'Creating Realm Apollo Client...', app )
+  console.log( 'Creating Realm Apollo Client' )
   const link = new HttpLink( {
     uri: `https://realm.mongodb.com/api/client/v2.0/app/${app.id}/graphql`,
     // A custom fetch handler adds the logged in user's access token to GraphQL requests

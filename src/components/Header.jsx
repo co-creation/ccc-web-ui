@@ -9,10 +9,16 @@ const MenuItem = ( { children, isLast, to = "/", ...rest } ) => {
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 0 }}
       mr={{ base: 0, sm: isLast ? 0 : 8 }}
+      color="black"
       display="block"
+      fontWeight="600"
+      lineHeight="32px"
+      size="16px"
       {...rest}
     >
-      <Link to={to}>{children}</Link>
+      <Link to={to}>
+        {children}
+      </Link>
     </Text>
   )
 }
@@ -65,7 +71,9 @@ const Header = ( props ) => {
         />
       </Flex>
 
-      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+      <Box 
+        display={{ base: "block", md: "none" }} 
+        onClick={toggleMenu}>
         {show ? <CloseIcon /> : <MenuIcon />}
       </Box>
 
@@ -80,15 +88,13 @@ const Header = ( props ) => {
           pt={[4, 4, 0, 0]}
         >
           <MenuItem to="/home">Home</MenuItem>
-          <MenuItem to="/book">Accomodation</MenuItem>
-          <MenuItem to="/payment">Payment</MenuItem>
-          <MenuItem to="/meal-plan">Meal Plan</MenuItem>
-          <MenuItem to="/resources">Guides & Resources</MenuItem>
+          <MenuItem to="/booking">Booking</MenuItem>
+          {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
           <MenuItem to="/signin" isLast>
             <Button
               onClick={app.logOut}
               size="sm"
-              rounded="md"
+              borderRadius="full"
               color={["primary.500", "primary.500", "white", "white"]}
               bg={["white", "white", "primary.500", "primary.500"]}
               _hover={{

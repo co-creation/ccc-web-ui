@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { 
   SignInScreen, 
   HomeScreen, 
-  BookAccomodationScreen, 
-  CheckoutScreen,
+  BookingScreen, 
+  PaymentScreen,
 } from "../screens"
 import AuthenticatedRoute from './AuthenticatedRoute'
 
@@ -15,11 +15,11 @@ export default function Routes() {
       <AuthenticatedRoute exact path='/home'>
         <HomeScreen />
       </AuthenticatedRoute>
-      <AuthenticatedRoute exact path='/book'>
-        <BookAccomodationScreen />
+      <AuthenticatedRoute exact path='/booking'>
+        <BookingScreen />
       </AuthenticatedRoute>
-      <AuthenticatedRoute exact path='/payment'>
-        <CheckoutScreen />
+      <AuthenticatedRoute exact path='/pay'>
+        <PaymentScreen />
       </AuthenticatedRoute>
       {/* The redirect below should be the last route in the switch — the catch all, including '/' */}
       <Redirect to="/home" />

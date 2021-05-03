@@ -1,6 +1,6 @@
 import { Route, Redirect } from 'react-router-dom'
 
-import { useRealmApp } from "../RealmApp"
+import { useRealmApp } from '../RealmApp'
 
 /**
  * @function AuthenticatedRoute if (user logged in) return children else return sign in screen

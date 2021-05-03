@@ -1,42 +1,55 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from '@chakra-ui/react'
 
 const colors = {
   primary: {
-    100: "#EFF4FE",
-    200: "#D4DEF8",
-    300: "#94AEED",
-    400: "#758CE0",
-    500: "#6175DF",
-    600: "#485EC5",
-    700: "#3646A4",
-    800: "#253586",
-    900: "#1F2C6D",
+    100: '#FAA307',
+    200: '#FAA307',
+    300: '#FAA307',
+    400: '#FAA307',
+    500: '#FAA307',
+    600: '#F19A00',
+    700: '#F19A00',
+    800: '#F19A00',
+    900: '#F19A00',
   },
-  neutral : {
-    100: "#F9F9FA",
-    200: "#E1E7EC",
-    300: "#E6E6E6",
-    400: "#CCD4DB",
-    500: "#AEBECD",
-    600: "#929FB1",
-    700: "#576575",
-    800: "#404B5A",
-    900: "#202833",
+  secondary: {
+    50: '#DDF8F8',
+    100: '#BAF2F2',
+    500: '#44B9B9',
+    700: '#1D9A9A',
   },
-  accents : {
-    100: "#EFF8FF",
-    200: "#AAD4F5",
-    500: "#64A2D8",
-    600: "#3282C8",
-    700: "#2468A2",
-    800: "#194971",
-    900: "#E0C8FF",
+  base: {
+    25: '#F9FAFB',
+    50: '#F3F5F6',
+    100: '#E7EAEF',
+    200: '#CED6DE',
+    300: '#ACB7C3',
+    400: '#95A2B2',
+    500: '#67798E',
+    600: '#495A6E',
+    700: '#394756',
+    800: '#29323D',
+    900: '#181E25',
   },
-  success : '#06d6a0',
-  warning : '#f6bd60',
-  error : '#e63946',
+  success: {
+    100: '#E7EAEF',
+    500: '#67798E',
+    700: '#394756',
+  },
+  danger: {
+    50: '#FFEBED',
+    100: '#FDD8DD',
+    500: '#D84652',
+    700: '#AA2A30',
+    900: '#65171C',
+  },
 }
 
-const customTheme = extendTheme( { colors } )
+const fonts = {
+    heading: "Poppins",
+    body: "Poppins",
+}
+
+const customTheme = extendTheme( { colors, fonts } )
 
 export default customTheme
