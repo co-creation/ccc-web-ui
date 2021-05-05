@@ -20,7 +20,7 @@ export default function BookingScreen() {
   const paymentRate = user?.['Payment Rate']?.[0]
   
   const [ outstandingBooking, setOutstandingBooking ] = useState( null )
-  
+
   const toast = useToast()
 
   useEffect( () => { 
@@ -45,8 +45,8 @@ export default function BookingScreen() {
     }
   }, [ userBookings, userBookings?.length, setOutstandingBooking ] )
 
-  const deleteOustandingBooking = () => {
-    outstandingBooking.destroy()
+  const deleteOustandingBooking = async () => {
+    await outstandingBooking.destroy()
     toast( {
       title: "Incomplete Booking Deleted",
       description: "You can now start your booking over again. Don't forget to pay at the checkout this time to complete your booking!",
@@ -54,7 +54,7 @@ export default function BookingScreen() {
       duration: 9000,
       isClosable: true,
     } )
-    setTimeout( refreshUserBookings, 1000 * 2 )
+    setTimeout( refreshUserBookings, 1000 * 1.5 )
   }
 
   return (
@@ -109,7 +109,7 @@ function Header( props ) {
             Start Over
           </Button>
           <LinkButton 
-            to="/pay"
+            to="booking/checkout"
             >
             Complete Booking
           </LinkButton>
@@ -166,16 +166,8 @@ function AirtableViews( props ) {
       height="750"
       >
       </iframe>
-      {/* <LinkButton 
-        to="/pay"
-        marginTop="10"
-        marginBottom="10"
-        size="lg"
-        >
-        Complete Booking
-      </LinkButton> */}
       <ConfirmationAlertDialog
-        onConfirm={() => history.push( '/pay' )} 
+        onConfirm={() => history.push( '/booking/checkout' )} 
         headerText="Did you Submit your Booking Request?" 
         bodyText="This app is a work in progress, and we're just making sure you clicked 'Submit' on the Booking form before continuing. If you did, no worries — please continue! If not, please finish your booking request before proceeding to the Payment screen." 
         cancelText="I Still Need to Submit" 

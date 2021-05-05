@@ -4,8 +4,8 @@ import {
   SignInScreen, 
   HomeScreen, 
   BookingScreen, 
-  PaymentScreen,
-} from "../screens"
+  CheckoutScreen,
+} from '../screens'
 import AuthenticatedRoute from './AuthenticatedRoute'
 
 export default function Routes() {
@@ -18,8 +18,8 @@ export default function Routes() {
       <AuthenticatedRoute exact path='/booking'>
         <BookingScreen />
       </AuthenticatedRoute>
-      <AuthenticatedRoute exact path='/pay'>
-        <PaymentScreen />
+      <AuthenticatedRoute exact path='/booking/checkout'>
+        <CheckoutScreen />
       </AuthenticatedRoute>
       {/* The redirect below should be the last route in the switch — the catch all, including '/' */}
       <Redirect to="/home" />

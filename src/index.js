@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import AppRoot from './AppRoot'
-import * as serviceWorker from './serviceWorker'
+// import * as serviceWorker from './serviceWorker'
 import customTheme from './utils/theme'
 
 ReactDOM.render(
