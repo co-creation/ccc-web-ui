@@ -117,7 +117,7 @@ export default function CheckoutScreen() {
 
   }
 
-  const bookingDurationText = `${totalBookedDates} Day${totalBookedDates > 1 ? 'S' : ''}`
+  const bookingDurationText = `${totalBookedDates} Day${totalBookedDates > 1 ? 's' : ''}`
 
   return (
     <Layout>
