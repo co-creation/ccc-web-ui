@@ -15,11 +15,11 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
-  Header,
+  Text,
   SkeletonText,
   Box,
   Flex,
+  Link,
 } from '@chakra-ui/react'
 
 
@@ -201,6 +201,17 @@ export default function CheckoutScreen() {
         >
         Pay
       </Button>
+      <Link 
+        color="blue"
+        mt="10"
+        href="https://docs.google.com/document/d/1lRYZsQeFMU7ylI16MA6w7z2jNWSZ5qEwci2FZ55m7_8/edit?usp=sharing" 
+        isExternal
+      >
+       By booking, you are agreeing to the CCC cancellation policy
+      </Link>
+      <Text as="i" mt="30" w="450px">
+        We offer Mutual Aid funding based on the stated need in your C(Q)uestionnaire. If this booking price means you would not be able to participate in the CCC, please reach out to Alex Brunson (803-873-8318) and Shadman Uddin (770-940-1771) to inquire about Mutual Aid.
+      </Text>
     </Layout>
   )
 }
