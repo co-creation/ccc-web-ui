@@ -94,7 +94,7 @@ function Header( props ) {
       <> 
         <TextCard 
           title="Pick up where you left off?" 
-          body="It looks like you already have a booking that you haven't paid for yet. Incomplete bookings are cleared from the system periodically. Are you ready to pay for your booking?"
+          body="It looks like you already have a booking that you haven't paid for yet. To finalize your booking, click 'Complete Booking'. If you want to change your booking, click 'Start Over'. Incomplete bookings are cleared from the system periodically."
         />
         <HStack mt="4">
           <Button 

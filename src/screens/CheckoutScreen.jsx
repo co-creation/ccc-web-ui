@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { loadStripe } from '@stripe/stripe-js'
 import { 
@@ -16,6 +16,7 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
+  Header,
   SkeletonText,
   Box,
   Flex,
@@ -26,7 +27,7 @@ import { useAirtable } from '../airtable/AirtableApp'
 import { useRealmApp } from '../RealmApp'
 
 import Layout from '../components/Layout'
-
+import TextCard from '../components/TextCard'
 import Config from '../Config'
 
 const stripePromise = loadStripe( Config.STRIPE_API_KEY )
@@ -49,6 +50,7 @@ export default function CheckoutScreen() {
   const unpaidBooking = userBookings?.find( booking => !booking?.fields?.[ 'Payment ID'] )
   const roomCost = unpaidBooking?.fields?.[ 'Calculated Room (Bed) Cost' ] ?? 0
   const mealPlanCost = unpaidBooking?.fields?.[ 'Calculated Board (Food) Cost' ] ?? 0
+  const surcharge = unpaidBooking?.fields?.[ 'Calculated Surcharge' ] ?? 0
   const bevPlanCost = unpaidBooking?.fields?.[ 'Calculated Beverage Cost' ] ?? 0
   const totalCost = unpaidBooking?.fields?.[ 'Total Booking Amount' ] ?? 0
   const totalBookedDates = unpaidBooking?.fields?.[ 'Total Booked Dates' ] ?? 0
@@ -94,6 +96,7 @@ export default function CheckoutScreen() {
           roomCost,
           mealPlanCost,
           bevPlanCost,
+          surcharge,
         }
       } )
   
@@ -122,13 +125,18 @@ export default function CheckoutScreen() {
 
   return (
     <Layout>
+      <>
+        <TextCard 
+          title="Your Payment Rate:" 
+          body={`${paymentRate} Rate`} 
+        />
       <Box minWidth="525px" padding="6" boxShadow="lg" borderRadius={8} bg="white">
       { !unpaidBooking ? ( 
         <SkeletonText mt="4" noOfLines={10} spacing="8" />
       ) : ( 
        <Flex direction="column" justify="center" align="center">
         <Table colorScheme="base" size="lg">
-          <TableCaption placement="top" fontWeight="bold">
+          <TableCaption placement="top" fontWeight="bold"  >
             CCC Booking Summary
           </TableCaption>
           <Thead>
@@ -160,18 +168,26 @@ export default function CheckoutScreen() {
                 <Td isNumeric>{`$${bevPlanCost}`}</Td>
               </Tr>
             )}
+            {surcharge > 0 && ( 
+              <Tr>
+                <Td>Holiday Surcharge</Td>
+                <Td>{surcharge === 100 ? 'Both Holidays' : 'One Holiday'}</Td>
+                <Td isNumeric>{`$${surcharge}`}</Td>
+              </Tr>
+            )}
           </Tbody>
         </Table>
           <Stat mt="8">
             <Flex direction="column" justify="center" align="center">
             <StatLabel>Total Cost</StatLabel>
-            <StatHelpText>{paymentRate} Rate</StatHelpText>
+            {/* <StatHelpText>{paymentRate} Rate</StatHelpText> */}
             <StatNumber>{`$${totalCost}`}</StatNumber>
             </Flex>
           </Stat>
         </Flex> 
       )}
       </Box>
+      </>
       <Button 
         colorScheme="primary"
         borderRadius="full"

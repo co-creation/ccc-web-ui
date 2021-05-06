@@ -4,7 +4,7 @@ import { Box, Flex, Text, Button } from "@chakra-ui/react"
 import Logo from "./Logo"
 import { useRealmApp } from "../RealmApp"
 
-const MenuItem = ( { children, isLast, to = "/", ...rest } ) => {
+const MenuItem = ( { children, isLast, to = "/", toExternal, ...rest } ) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 0 }}
@@ -14,6 +14,7 @@ const MenuItem = ( { children, isLast, to = "/", ...rest } ) => {
       fontWeight="600"
       lineHeight="32px"
       size="16px"
+      onClick={toExternal ? () => window.location.href = toExternal : undefined}
       {...rest}
     >
       <Link to={to}>
@@ -87,6 +88,9 @@ const Header = ( props ) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
+          <MenuItem toExternal="https://www.co-creation.io/">
+            Website
+          </MenuItem>
           <MenuItem to="/home">Home</MenuItem>
           <MenuItem to="/booking">Booking</MenuItem>
           {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
