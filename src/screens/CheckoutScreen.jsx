@@ -33,7 +33,7 @@ const stripePromise = loadStripe( Config.STRIPE_API_KEY )
 
 export default function CheckoutScreen() {
 
-  const history = useHistory()
+  // const history = useHistory()
   const toast = useToast()
   const realmApp = useRealmApp()
   const { 
@@ -56,6 +56,7 @@ export default function CheckoutScreen() {
   useEffect( () => { 
     if ( !unpaidBooking ) {
       refreshUserBookings()
+      setTimeout( refreshUserBookings, 1000 )
     }
   }, [ refreshUserBookings, unpaidBooking ] )
   
