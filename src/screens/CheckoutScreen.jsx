@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-// import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { loadStripe } from '@stripe/stripe-js'
 import { 
@@ -20,6 +20,7 @@ import {
   Box,
   Flex,
   Link,
+  VStack,
 } from '@chakra-ui/react'
 
 
@@ -34,7 +35,8 @@ const stripePromise = loadStripe( Config.STRIPE_API_KEY )
 
 export default function CheckoutScreen() {
 
-  // const history = useHistory()
+  const [ cancellationNotified, setCancellationNotified ] = useState( false )
+  const history = useHistory()
   const toast = useToast()
   const realmApp = useRealmApp()
   const { 
@@ -58,9 +60,24 @@ export default function CheckoutScreen() {
   useEffect( () => { 
     if ( !unpaidBooking ) {
       refreshUserBookings()
-      setTimeout( refreshUserBookings, 1000 )
     }
   }, [ refreshUserBookings, unpaidBooking ] )
+
+  useEffect( () => {
+    const { search } = history.location 
+    if ( search === '?canceled=true' && !cancellationNotified ) {
+      // Stripe checkout just redirected back after a successful payment
+      toast( {
+        title: `Not ready to pay for your booking? Let us know if we can help`,
+        description: 'Reach out to michael.wedd@gmail.com / @mikewedd (Slack) if we can help you address any issues. If you want to start your booking over, just click "booking" in the top menu.',
+        status: 'info',
+        duration: 18000,
+        isClosable: true,
+      } )
+      setCancellationNotified( true )
+      refreshUserBookings()
+    }
+  }, [ history, toast, cancellationNotified, refreshUserBookings ] ) 
   
   // Validate the potential checkout session user
   useEffect( () => { 
@@ -126,16 +143,18 @@ export default function CheckoutScreen() {
   return (
     <Layout>
       <>
+      {paymentRate && (
         <TextCard 
           title="Your Payment Rate:" 
           body={`${paymentRate} Rate`} 
         />
-      <Box minWidth="525px" padding="6" boxShadow="lg" borderRadius={8} bg="white">
+        )}
+      <Box minW="350px" padding="6" boxShadow="lg" borderRadius={8} bg="white">
       { !unpaidBooking ? ( 
         <SkeletonText mt="4" noOfLines={10} spacing="8" />
       ) : ( 
        <Flex direction="column" justify="center" align="center">
-        <Table colorScheme="base" size="lg">
+        <Table colorScheme="base" size="md">
           <TableCaption placement="top" fontWeight="bold"  >
             CCC Booking Summary
           </TableCaption>
@@ -192,7 +211,7 @@ export default function CheckoutScreen() {
         colorScheme="primary"
         borderRadius="full"
         py="6"
-        px="12"
+        px="16"
         lineHeight="1"
         size="lg"
         mt="35"
@@ -201,17 +220,20 @@ export default function CheckoutScreen() {
         >
         Pay
       </Button>
+        <VStack mt="10" px="4">
       <Link 
         color="blue"
-        mt="10"
+        mt="5"
+        mb="5"
         href="https://docs.google.com/document/d/1lRYZsQeFMU7ylI16MA6w7z2jNWSZ5qEwci2FZ55m7_8/edit?usp=sharing" 
         isExternal
       >
        By booking, you are agreeing to the CCC cancellation policy
       </Link>
-      <Text as="i" mt="30" w="450px">
+      <Text as="i" mt="10" mb="10" maxW="450px">
         We offer Mutual Aid funding based on the stated need in your C(Q)uestionnaire. If this booking price means you would not be able to participate in the CCC, please reach out to Alex Brunson (803-873-8318) and Shadman Uddin (770-940-1771) to inquire about Mutual Aid.
       </Text>
+      </VStack>
     </Layout>
   )
 }
