@@ -1,27 +1,53 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Box, Flex, Text, Button } from "@chakra-ui/react"
-import Logo from "./Logo"
-import { useRealmApp } from "../RealmApp"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {
+  Box, Flex, Text, Button,
+} from '@chakra-ui/react'
+import Logo from './Logo'
+import { useRealmApp } from '../RealmApp'
 
-const MenuItem = ( { children, isLast, to = "/", toExternal, ...rest } ) => {
-  return (
-    <Text
-      mb={{ base: isLast ? 0 : 8, sm: 0 }}
-      mr={{ base: 0, sm: isLast ? 0 : 8 }}
-      color="black"
-      display="block"
-      fontWeight="600"
-      lineHeight="32px"
-      size="16px"
-      onClick={toExternal ? () => window.location.href = toExternal : undefined}
-      {...rest}
-    >
-      <Link to={to}>
-        {children}
-      </Link>
-    </Text>
-  )
+const MenuItem = ( {
+  children,
+  isLast,
+  to,
+  toExternal,
+  ...rest
+} ) => (
+  <Text
+    mb={{ base: isLast ? 0 : 8, sm: 0 }}
+    mr={{ base: 0, sm: isLast ? 0 : 8 }}
+    color="black"
+    display="block"
+    fontWeight="600"
+    lineHeight="32px"
+    size="16px"
+    onClick={toExternal
+      ? () => { window.location.href = toExternal }
+      : undefined}
+    {...rest}
+  >
+    <Link to={to}>
+      {children}
+    </Link>
+  </Text>
+)
+
+MenuItem.propTypes = {
+  children: PropTypes.oneOfType( [
+    PropTypes.node,
+    PropTypes.arrayOf( PropTypes.node ),
+  ] ),
+  isLast: PropTypes.bool,
+  to: PropTypes.string,
+  toExternal: PropTypes.string,
+}
+
+MenuItem.defaultProps = {
+  children: [],
+  isLast: false,
+  to: '/',
+  toExternal: '',
 }
 
 const CloseIcon = () => (
@@ -61,49 +87,55 @@ const Header = ( props ) => {
       w="100%"
       mb={8}
       p={8}
-      bg={["primary.500", "primary.500", "transparent", "transparent"]}
-      color={["white", "white", "primary.700", "primary.700"]}
+      bg={['primary.500', 'primary.500', 'transparent', 'transparent']}
+      color={['white', 'white', 'primary.700', 'primary.700']}
       {...props}
     >
       <Flex align="center">
         <Logo
           w="100px"
-          color={["white", "white", "primary.500", "primary.500"]}
+          color={['white', 'white', 'primary.500', 'primary.500']}
         />
       </Flex>
 
-      <Box 
-        display={{ base: "block", md: "none" }} 
-        onClick={toggleMenu}>
+      <Box
+        display={{ base: 'block', md: 'none' }}
+        onClick={toggleMenu}
+      >
         {show ? <CloseIcon /> : <MenuIcon />}
       </Box>
 
       <Box
-        display={{ base: show ? "block" : "none", md: "block" }}
-        flexBasis={{ base: "100%", md: "auto" }}
+        display={{ base: show ? 'block' : 'none', md: 'block' }}
+        flexBasis={{ base: '100%', md: 'auto' }}
       >
         <Flex
           align="center"
-          justify={["center", "space-between", "flex-end", "flex-end"]}
-          direction={["column", "row", "row", "row"]}
+          justify={['center', 'space-between', 'flex-end', 'flex-end']}
+          direction={['column', 'row', 'row', 'row']}
           pt={[4, 4, 0, 0]}
         >
           <MenuItem toExternal="https://www.co-creation.io/">
             Website
           </MenuItem>
-          <MenuItem to="/home">Home</MenuItem>
-          <MenuItem to="/booking">Booking</MenuItem>
+          <MenuItem to="/home">
+            Home
+          </MenuItem>
+          <MenuItem to="/booking">
+            Booking
+          </MenuItem>
           {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
           <MenuItem to="/signin" isLast>
             <Button
               onClick={app.logOut}
               size="sm"
               borderRadius="full"
-              color={["primary.500", "primary.500", "white", "white"]}
-              bg={["white", "white", "primary.500", "primary.500"]}
+              color={['primary.500', 'primary.500', 'white', 'white']}
+              bg={['white', 'white', 'primary.500', 'primary.500']}
               _hover={{
-                bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-              }}>
+                bg: ['primary.100', 'primary.100', 'primary.600', 'primary.600'],
+              }}
+            >
               Sign Out
             </Button>
           </MenuItem>

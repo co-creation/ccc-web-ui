@@ -1,11 +1,12 @@
-import React from "react"
-import { useRealmApp } from "../RealmApp"
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
   ApolloProvider,
-} from "@apollo/client"
+} from '@apollo/client'
+import { useRealmApp } from '../RealmApp'
 
 // Create an ApolloClient that connects to the provided Realm.App's GraphQL API
 const createRealmApolloClient = ( app ) => {
@@ -15,11 +16,12 @@ const createRealmApolloClient = ( app ) => {
     // A custom fetch handler adds the logged in user's access token to GraphQL requests
     fetch: async ( uri, options ) => {
       if ( !app.currentUser ) {
-        throw new Error( `Must be logged in to use the GraphQL API` )
+        throw new Error( 'Must be logged in to use the GraphQL API' )
       }
       // Refreshing a user's custom data also refreshes their access token
       await app.currentUser.refreshCustomData()
       // The handler adds a bearer token Authorization header to the otherwise unchanged request
+      // eslint-disable-next-line no-param-reassign
       options.headers.Authorization = `Bearer ${app.currentUser.accessToken}`
       return fetch( uri, options )
     },
@@ -36,5 +38,16 @@ export default function RealmApolloProvider( { children } ) {
   React.useEffect( () => {
     setClient( createRealmApolloClient( app ) )
   }, [app] )
-  return <ApolloProvider client={client}>{children}</ApolloProvider>
+  return (
+    <ApolloProvider client={client}>
+      {children}
+    </ApolloProvider>
+  )
+}
+
+RealmApolloProvider.propTypes = {
+  children: PropTypes.oneOfType( [
+    PropTypes.node,
+    PropTypes.arrayOf( PropTypes.node ),
+  ] ).isRequired,
 }

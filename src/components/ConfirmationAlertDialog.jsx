@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   AlertDialog,
   AlertDialogBody,
@@ -11,6 +12,16 @@ import {
 } from '@chakra-ui/react'
 
 export default function ConfirmationAlertDialog( props ) {
+  const {
+    onConfirm,
+    destructive,
+    triggerText,
+    headerText,
+    bodyText,
+    cancelText,
+    actionText,
+    ...rest
+  } = props
 
   const [isOpen, setIsOpen] = React.useState( false )
   const onClose = () => setIsOpen( false )
@@ -22,12 +33,10 @@ export default function ConfirmationAlertDialog( props ) {
     onConfirm()
   }
 
-  const { onConfirm, destructive, triggerText, headerText, bodyText, cancelText, actionText, ...rest } = props 
-
   return (
     <>
-      <Button 
-        colorScheme={destructive ? 'danger' : 'primary'} 
+      <Button
+        colorScheme={destructive ? 'danger' : 'primary'}
         onClick={onOpen}
         borderRadius="full"
         marginTop="10"
@@ -56,10 +65,20 @@ export default function ConfirmationAlertDialog( props ) {
 
             <AlertDialogFooter>
               <Flex direction="row" align="center" justify="center">
-                <Button borderRadius="full" colorScheme="danger" ref={cancelRef} onClick={onClose}>
+                <Button
+                  borderRadius="full"
+                  colorScheme="danger"
+                  ref={cancelRef}
+                  onClick={onClose}
+                >
                   {cancelText}
                 </Button>
-                <Button borderRadius="full" colorScheme={destructive ? 'danger' : 'primary'}  onClick={onConfirmAction} ml={3}>
+                <Button
+                  borderRadius="full"
+                  colorScheme={destructive ? 'danger' : 'primary'}
+                  onClick={onConfirmAction}
+                  ml={3}
+                >
                   {actionText}
                 </Button>
               </Flex>
@@ -69,4 +88,20 @@ export default function ConfirmationAlertDialog( props ) {
       </AlertDialog>
     </>
   )
+}
+
+ConfirmationAlertDialog.propTypes = {
+  onConfirm: PropTypes.func.isRequired,
+  headerText: PropTypes.string.isRequired,
+  cancelText: PropTypes.string.isRequired,
+  actionText: PropTypes.string.isRequired,
+  triggerText: PropTypes.string,
+  bodyText: PropTypes.string,
+  destructive: PropTypes.bool,
+}
+
+ConfirmationAlertDialog.defaultProps = {
+  destructive: false,
+  triggerText: '',
+  bodyText: '',
 }

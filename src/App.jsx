@@ -12,8 +12,8 @@ export default function App() {
       <AirtableProvider>
         <Router>
           <Routes />
-        </Router >
+        </Router>
       </AirtableProvider>
-    </RealmApolloProvider >
+    </RealmApolloProvider>
   )
 }

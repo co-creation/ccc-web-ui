@@ -6,7 +6,7 @@ import TextCard from './TextCard'
 import LinkButton from './LinkButton'
 import ConfirmationAlertDialog from './ConfirmationAlertDialog'
 
-export { 
+export {
   Layout,
   Header,
   Hero,

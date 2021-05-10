@@ -6,31 +6,31 @@ import { useAirtable } from '../airtable/AirtableApp'
 import Hero from '../components/Hero'
 import Layout from '../components/Layout'
 
-import imageSrc from "../assets/images/heroimage.jpeg"
+import imageSrc from '../assets/images/heroimage.jpeg'
 
 export default function HomeScreen() {
-
   const history = useHistory()
   const toast = useToast()
-  const [ successNotified, setSuccessNotified ] = useState( false )
-  const { user : airtableUser, refreshUserBookings } = useAirtable()
+  const [successNotified, setSuccessNotified] = useState( false )
+  const { user: airtableUser, getUser } = useAirtable()
   const firstName = airtableUser?.['First Name']
+  console.log( 'Airtable user', airtableUser )
 
   useEffect( () => {
-      const { search } = history.location 
-      if ( search === '?success=true' && !successNotified && firstName ) {
-        // Stripe checkout just redirected back after a successful payment
-        toast( {
-          title: `You're booked, ${firstName}!`,
-          description: 'Check your email for a booking summary and your receipt',
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        } )
-        setSuccessNotified( true )
-        refreshUserBookings()
-      }
-    }, [ history, firstName, toast, successNotified, refreshUserBookings ] ) 
+    const { search } = history.location
+    if ( search === '?success=true' && !successNotified && firstName ) {
+      // Stripe checkout just redirected back after a successful payment
+      toast( {
+        title: `You're booked, ${firstName}!`,
+        description: 'Check your email for a booking summary and your receipt',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      } )
+      setSuccessNotified( true )
+      getUser()
+    }
+  }, [history, firstName, toast, successNotified, getUser] )
 
   const welcomeText = firstName ? `Welcome Home, ${firstName}` : 'Welcome Home'
 

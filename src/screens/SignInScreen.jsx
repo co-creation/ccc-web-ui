@@ -11,19 +11,18 @@ import {
   Button,
   Box,
   Heading,
-  useToast
+  useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 
 import { useRealmApp } from '../RealmApp'
 
 export default function SignInScreen() {
-
   const app = useRealmApp()
   const history = useHistory()
   const toast = useToast()
 
-  const [ isLoggingIn, setIsLoggingIn ] = React.useState( false )
+  const [isLoggingIn, setIsLoggingIn] = React.useState( false )
   const handleLogin = async ( email, password ) => {
     setIsLoggingIn( true )
     // setError( ( e ) => ( { ...e, password: null } ) )
@@ -33,18 +32,20 @@ export default function SignInScreen() {
     } catch ( err ) {
       setIsLoggingIn( false )
       toast( {
-        title: "Incorrect Email or Password",
-        description: "Are you sure your email and password are correct? Check your welcome email and try again. Reach out to cocreationcastle@gmail.com if you need any help.",
-        status: "error",
+        title: 'Incorrect Email or Password',
+        description: 'Are you sure your email and password are correct? Check your welcome email and try again. Reach out to cocreationcastle@gmail.com if you need any help.',
+        status: 'error',
         duration: 9000,
         isClosable: true,
       } )
-      console.error( err ) // todo deal with this error 
+      console.error( err ) // todo deal with this error
       // handleAuthenticationError( err, setError )
     }
   }
 
-  const { handleSubmit, errors, register, formState } = useForm()
+  const {
+    handleSubmit, errors, register, formState,
+  } = useForm()
 
   function onSubmit( { email, password } ) {
     handleLogin( email, password )
@@ -57,52 +58,55 @@ export default function SignInScreen() {
       align="center"
       justify="center"
       h="100%"
-      maxW={{ xl: "1200px" }}
-      m="0 auto">
-      <Heading 
-        as="h2" 
-        size="lg" 
-        p="16px">
-          The Co-Creation C_
+      maxW={{ xl: '1200px' }}
+      m="0 auto"
+    >
+      <Heading
+        as="h2"
+        size="lg"
+        p="16px"
+      >
+        The Co-Creation C_
       </Heading>
       <Box p={8} w="350px" borderWidth={1} borderRadius={8} boxShadow="lg">
-      <form onSubmit={handleSubmit( onSubmit )}>
-        <FormControl isRequired isInvalid={errors.email}>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <Input
-            name="email"
-            placeholder="siena@gmail.com"
-            autoComplete="email"
-            ref={register( { validate: validate.isEmail } )}
-          />
-          <FormErrorMessage>
-            {errors.email?.message}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl isRequired isInvalid={errors.password}>
-        <FormLabel htmlFor="password">Password</FormLabel>
-          <Input
-            name="password"
-            placeholder="**********"
-            type="password"
-            autoComplete="password"
-            ref={register()}
-          />
-          <FormErrorMessage>
-            {errors.password?.message}
-          </FormErrorMessage>
-        </FormControl>
-      
+        <form onSubmit={handleSubmit( onSubmit )}>
+          <FormControl isRequired isInvalid={errors.email}>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
+              name="email"
+              placeholder="siena@gmail.com"
+              autoComplete="email"
+              ref={register( { validate: validate.isEmail } )}
+            />
+            <FormErrorMessage>
+              {errors.email?.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isRequired isInvalid={errors.password}>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              name="password"
+              placeholder="**********"
+              type="password"
+              autoComplete="password"
+              ref={register()}
+            />
+            <FormErrorMessage>
+              {errors.password?.message}
+            </FormErrorMessage>
+          </FormControl>
+
           <Button
             isLoading={formState.isSubmitting || isLoggingIn}
             loadingText="Signing In..."
             mt={4}
             w="100%"
             colorScheme="primary"
-            type="submit">
+            type="submit"
+          >
             Sign In
           </Button>
-      </form>
+        </form>
       </Box>
     </Flex>
   )

@@ -1,5 +1,6 @@
-import React from "react"
-import * as Realm from "realm-web"
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as Realm from 'realm-web'
 
 const RealmAppContext = React.createContext()
 
@@ -7,14 +8,13 @@ export const useRealmApp = () => {
   const app = React.useContext( RealmAppContext )
   if ( !app ) {
     throw new Error(
-      `You must call useRealmApp() inside of a <RealmAppProvider />`
+      'You must call useRealmApp() inside of a <RealmAppProvider />',
     )
   }
   return app
 }
 
 export const RealmAppProvider = ( { appId, children } ) => {
-  
   const [app, setApp] = React.useState( new Realm.App( appId ) )
 
   React.useEffect( () => {
@@ -23,7 +23,7 @@ export const RealmAppProvider = ( { appId, children } ) => {
 
   // Wrap the Realm.App object's user state with React state
   const [currentUser, setCurrentUser] = React.useState( app.currentUser )
-  
+
   async function logIn( credentials ) {
     await app.logIn( credentials )
     // If successful, app.currentUser is the user that just logged in
@@ -37,11 +37,21 @@ export const RealmAppProvider = ( { appId, children } ) => {
     setCurrentUser( app.currentUser )
   }
 
-  const wrapped = { ...app, currentUser, logIn, logOut }
+  const wrapped = {
+    ...app, currentUser, logIn, logOut,
+  }
 
   return (
     <RealmAppContext.Provider value={wrapped}>
       {children}
     </RealmAppContext.Provider>
   )
+}
+
+RealmAppProvider.propTypes = {
+  appId: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType( [
+    PropTypes.node,
+    PropTypes.arrayOf( PropTypes.node ),
+  ] ).isRequired,
 }
