@@ -19,7 +19,7 @@ const colors = {
     900: '#E38800',
   },
   secondary: {
-    50: 'F5FAF8',
+    50: '#F5FAF8',
     100: '#DFEAE6',
     500: '#7AA996',
     700: '#628C7B',
