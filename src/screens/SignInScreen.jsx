@@ -4,144 +4,55 @@ import validate from 'validator'
 import { useHistory } from 'react-router-dom'
 import {
   Flex,
-  Input,
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Button,
   Box,
-  Heading,
-  useToast
+  useBreakpointValue,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 
 import { useRealmApp } from '../RealmApp'
+import { SignInBackground }  from '../assets/images/index'
+import { SignInForm } from '../forms'
+import { ThemeContext } from '@emotion/react'
+
 
 export default function SignInScreen() {
-
-  const app = useRealmApp()
-  const history = useHistory()
-  const toast = useToast()
-
-  const [ isLoggingIn, setIsLoggingIn ] = React.useState( false )
-  const handleLogin = async ( email, password ) => {
-    setIsLoggingIn( true )
-    // setError( ( e ) => ( { ...e, password: null } ) )
-    try {
-      await app.logIn( Realm.Credentials.emailPassword( email, password ) )
-      history.push( '/home' )
-    } catch ( err ) {
-      setIsLoggingIn( false )
-      toast( {
-        title: "Incorrect Email or Password",
-        description: "Are you sure your email and password are correct? Check your welcome email and try again. Reach out to cocreationcastle@gmail.com if you need any help.",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      } )
-      console.error( err ) // todo deal with this error 
-      // handleAuthenticationError( err, setError )
-    }
-  }
-
-  const { handleSubmit, errors, register, formState } = useForm()
-
-  function onSubmit( { email, password } ) {
-    handleLogin( email, password )
-    console.log( 'logging in...' )
-  }
+  const isMobile = useBreakpointValue( {base : true, md : false} )
 
   return (
     <Flex
-      direction="column"
+      direction="row"
       align="center"
       justify="center"
-      h="100%"
+      minH="100vh"
+      minW="100vw"
       maxW={{ xl: "1200px" }}
-      m="0 auto">
-      <Heading 
-        as="h2" 
-        size="lg" 
-        p="16px">
-          The Co-Creation C_
-      </Heading>
-      <Box p={8} w="350px" borderWidth={1} borderRadius={8} boxShadow="lg">
-      <form onSubmit={handleSubmit( onSubmit )}>
-        <FormControl isRequired isInvalid={errors.email}>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <Input
-            name="email"
-            placeholder="siena@gmail.com"
-            autoComplete="email"
-            ref={register( { validate: validate.isEmail } )}
-          />
-          <FormErrorMessage>
-            {errors.email?.message}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl isRequired isInvalid={errors.password}>
-        <FormLabel htmlFor="password">Password</FormLabel>
-          <Input
-            name="password"
-            placeholder="**********"
-            type="password"
-            autoComplete="password"
-            ref={register()}
-          />
-          <FormErrorMessage>
-            {errors.password?.message}
-          </FormErrorMessage>
-        </FormControl>
-      
-          <Button
-            isLoading={formState.isSubmitting || isLoggingIn}
-            loadingText="Signing In..."
-            mt={4}
-            w="100%"
-            colorScheme="primary"
-            type="submit">
-            Sign In
-          </Button>
-      </form>
-      </Box>
+      m="0 auto"
+    >
+      {isMobile && 
+        <Flex 
+          style={{ backgroundImage: `url(${SignInBackground})`,
+          backgroundPosition : 'center', 
+          minHeight:'100vh', 
+          width :'100vw', 
+          backgroundSize: 'cover', 
+          justifyContent:'center', 
+          alignItems:'center',
+        }}>
+          <Box p='12px' w="284px" h='344px' borderWidth={1} borderRadius={8} boxShadow="lg" bg="base.25">
+            <SignInForm />
+          </Box>
+        </Flex>
+      }
+      {!isMobile &&
+        <Flex style={{height:'100vh', width:'100%'}}>
+          <Flex w="50vw" grow={1} style={{ backgroundImage: `url(${SignInBackground})`, backgroundSize : 'cover', backgroundPosition : 'center' }}/>
+          <Flex w="50vw" align="center" justify="center" grow={1}>
+            <Box w="400px" bg="white" align="center" justify="center">
+              <SignInForm />
+            </Box>
+          </Flex>
+        </Flex>
+      }
     </Flex>
   )
 }
-
-// function handleAuthenticationError( err, setError ) {
-//   const { status, message } = parseAuthenticationError( err )
-//   const errorType = message || status
-//   switch ( errorType ) {
-//     case "invalid username":
-//       setError( ( prevErr ) => ( { ...prevErr, email: "Invalid email address." } ) )
-//       break
-//     case "invalid username/password":
-//     case "invalid password":
-//     case "401":
-//       setError( ( err ) => ( { ...err, password: "Incorrect password." } ) )
-//       break
-//     case "name already in use":
-//     case "409":
-//       setError( ( err ) => ( { ...err, email: "Email is already registered." } ) )
-//       break
-//     case "password must be between 6 and 128 characters":
-//     case "400":
-//       setError( ( err ) => ( {
-//         ...err,
-//         password: "Password must be between 6 and 128 characters.",
-//       } ) )
-//       break
-//     default:
-//       break
-//   }
-// }
-
-// function parseAuthenticationError( err ) {
-//   const parts = err.message.split( ":" )
-//   const reason = parts[parts.length - 1].trimStart()
-//   if ( !reason ) return { status: "", message: "" }
-//   const reasonRegex = /(?<message>.+)\s\(status (?<status>[0-9][0-9][0-9])/
-//   const match = reason.match( reasonRegex )
-//   const { status, message } = match?.groups ?? {}
-//   return { status, message }
-// }

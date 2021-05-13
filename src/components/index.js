@@ -1,17 +1,19 @@
-import Layout from './Layout'
+import ConfirmationAlertDialog from './ConfirmationAlertDialog'
 import Header from './Header'
 import Hero from './Hero'
-import Logo from './Logo'
-import TextCard from './TextCard'
+import Layout from './Layout'
 import LinkButton from './LinkButton'
-import ConfirmationAlertDialog from './ConfirmationAlertDialog'
+import Logo from './Logo'
+import RoundButtonSolid from './RoundButtonSolid'
+import TextCard from './TextCard'
 
 export { 
-  Layout,
+  ConfirmationAlertDialog,
   Header,
   Hero,
-  Logo,
-  TextCard,
+  Layout,
   LinkButton,
-  ConfirmationAlertDialog,
+  Logo,
+  RoundButtonSolid,
+  TextCard,
 }
