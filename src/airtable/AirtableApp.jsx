@@ -50,7 +50,7 @@ export const AirtableProvider = ( { children } ) => {
         setError( err.message )
         toast( {
           title: 'Error getting your user profile',
-          description: `Error Detail: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
           status: 'error',
           duration: 18000,
           isClosable: true,
@@ -81,7 +81,7 @@ export const AirtableProvider = ( { children } ) => {
         setError( err.message )
         toast( {
           title: 'Error getting your bookings',
-          description: `Error Detail: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
           status: 'error',
           duration: 18000,
           isClosable: true,
@@ -115,7 +115,7 @@ export const AirtableProvider = ( { children } ) => {
         setError( err.message )
         toast( {
           title: 'Error getting your booking',
-          description: `Error Detail: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
           status: 'error',
           duration: 18000,
           isClosable: true,
@@ -155,7 +155,7 @@ export const AirtableProvider = ( { children } ) => {
         setError( err.message )
         toast( {
           title: 'Error deleting your booking',
-          description: `Error Detail: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
           status: 'error',
           duration: 18000,
           isClosable: true,
@@ -169,9 +169,11 @@ export const AirtableProvider = ( { children } ) => {
   )
 
   useEffect( () => {
-    getUser()
-    getBookings()
-  }, [getUser, getBookings] )
+    if ( realmUsername ) {
+      getUser()
+      getBookings()
+    }
+  }, [getUser, getBookings, realmUsername] )
 
   const airtableDataWithMethods = {
     user,
