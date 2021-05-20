@@ -109,7 +109,7 @@ export default function CheckoutScreen() {
       // Call your backend to create the Checkout Session
       const { data: checkoutSession } = await axios( {
         method: 'post',
-        url: `${Config.STRIPE_SERVER_URL}/user/${airtableUsername}/booking/${unpaidBooking?.id}/create-checkout-session`,
+        url: `${Config.STRIPE_SERVER_URL}/user/${airtableUsername}/create-checkout-session`,
         data: {
           roomCost,
           mealPlanCost,
