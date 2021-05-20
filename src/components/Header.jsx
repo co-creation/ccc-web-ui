@@ -115,9 +115,6 @@ const Header = ( props ) => {
           direction={['column', 'row', 'row', 'row']}
           pt={[4, 4, 0, 0]}
         >
-          <MenuItem toExternal="https://www.co-creation.io/">
-            Website
-          </MenuItem>
           <MenuItem to="/home">
             Home
           </MenuItem>
@@ -125,6 +122,9 @@ const Header = ( props ) => {
             Booking
           </MenuItem>
           {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
+          <MenuItem toExternal="https://www.co-creation.io/">
+            Public Website
+          </MenuItem>
           <MenuItem to="/signin" isLast>
             <Button
               onClick={app.logOut}
