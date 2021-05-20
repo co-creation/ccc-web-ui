@@ -124,6 +124,9 @@ const Header = ( props ) => {
           <MenuItem to="/booking">
             Booking
           </MenuItem>
+          <MenuItem to="/booking-v2">
+            Booking V2
+          </MenuItem>
           {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
           <MenuItem to="/signin" isLast>
             <Button

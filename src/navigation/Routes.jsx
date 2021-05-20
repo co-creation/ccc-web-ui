@@ -5,6 +5,7 @@ import {
   SignInScreen,
   HomeScreen,
   BookingScreen,
+  BookingV2Screen,
   CheckoutScreen,
 } from '../screens'
 import AuthenticatedRoute from './AuthenticatedRoute'
@@ -18,6 +19,9 @@ export default function Routes() {
       </AuthenticatedRoute>
       <AuthenticatedRoute exact path="/booking">
         <BookingScreen />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute exact path="/booking-v2">
+        <BookingV2Screen />
       </AuthenticatedRoute>
       <AuthenticatedRoute exact path="/booking/checkout">
         <CheckoutScreen />
