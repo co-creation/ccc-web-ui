@@ -1,5 +1,5 @@
 {
-  "name": "ccc-ui",
+  "name": "ccc-web-ui",
   "version": "0.1.1",
   "private": true,
   "scripts": {
@@ -57,6 +57,7 @@
         "always"
       ],
       "semi": 0,
+      "no-console": 0,
       "react/jsx-props-no-spreading": 0
     }
   },
