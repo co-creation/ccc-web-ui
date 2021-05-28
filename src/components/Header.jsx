@@ -1,9 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
-  Box, Flex, Text, Button,
+  Box,
+  Flex,
+  Text,
+  Button,
+  Link as ChakraLink,
 } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons' // eslint-ignore
+
 import Logo from './Logo'
 import { useRealmApp } from '../RealmApp'
 
@@ -22,14 +28,20 @@ const MenuItem = ( {
     fontWeight="600"
     lineHeight="32px"
     size="16px"
-    onClick={toExternal
-      ? () => { window.location.href = toExternal }
-      : undefined}
     {...rest}
   >
-    <Link to={to}>
-      {children}
-    </Link>
+    {toExternal ? (
+      <ChakraLink href={toExternal} isExternal>
+        <Flex direction="row" justify="center" align="center">
+          {children}
+          <ExternalLinkIcon mx="4px" />
+        </Flex>
+      </ChakraLink>
+    ) : (
+      <RouterLink to={to}>
+        {children}
+      </RouterLink>
+    )}
   </Text>
 )
 
@@ -121,7 +133,9 @@ const Header = ( props ) => {
           <MenuItem to="/booking">
             Booking
           </MenuItem>
-          {/* <MenuItem to="/resources">Guides & Resources</MenuItem> */}
+          <MenuItem to="/meal-plan">
+            Meal Plan
+          </MenuItem>
           <MenuItem toExternal="https://www.co-creation.io/">
             Public Website
           </MenuItem>

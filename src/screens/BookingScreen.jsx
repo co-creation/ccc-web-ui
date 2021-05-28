@@ -162,6 +162,13 @@ function AirtableViews( props ) {
         frameBorder="0"
         width="100%"
         height="533"
+        style={{
+          background: 'transparent',
+          border: '1px solid #ccc',
+          borderRadius: 4,
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
+          margin: 24,
+        }}
       />
       <iframe
         title="Booking Form"
@@ -170,6 +177,12 @@ function AirtableViews( props ) {
         frameBorder="0"
         width="100%"
         height="750"
+        style={{
+          background: 'transparent',
+          border: '1px solid #ccc',
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
+          borderRadius: 4,
+        }}
       />
       <ConfirmationAlertDialog
         onConfirm={() => history.push( '/booking/checkout' )}

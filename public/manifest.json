@@ -1,6 +1,6 @@
 {
   "short_name": "CCC",
-  "name": "Co-Creation C_____",
+  "name": "Co-Creation C_",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo.png",
+      "src": "app-tile.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "120x120"
     },
     {
-      "src": "logo.png",
+      "src": "app-tile-lg.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#FAA307",
   "background_color": "#ffffff"
 }
