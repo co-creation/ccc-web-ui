@@ -23,6 +23,8 @@
     "@emotion/styled": "^11.1.5",
     "@fontsource/nunito-sans": "^4.2.2",
     "@fontsource/poppins": "^4.2.2",
+    "@hookform/error-message": "^2.0.0",
+    "@hookform/resolvers": "^2.5.2",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.14.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -32,16 +34,19 @@
     "framer-motion": "^3.10.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
+    "password-validator": "^5.1.1",
     "prop-types": "^15.7.2",
+    "query-string": "^4.3.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^6.15.4",
+    "react-hook-form": "^7.8.4",
     "react-icons": "^4.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-split-pane": "^2.0.3",
     "realm-web": "^1.2.1",
+    "superstruct": "^0.15.2",
     "validator": "^13.5.2",
     "web-vitals": "^1.1.1"
   },
@@ -59,7 +64,8 @@
       ],
       "semi": 0,
       "no-console": 0,
-      "react/jsx-props-no-spreading": 0
+      "react/jsx-props-no-spreading": 0,
+      "no-unused-vars": 1
     }
   },
   "browserslist": {

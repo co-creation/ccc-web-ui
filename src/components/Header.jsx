@@ -142,7 +142,7 @@ const Header = ( props ) => {
           <MenuItem toExternal="https://www.co-creation.io/">
             Public Website
           </MenuItem>
-          <MenuItem to="/signin" isLast>
+          <MenuItem to="/sign-in" isLast>
             <Button
               onClick={app.logOut}
               size="sm"

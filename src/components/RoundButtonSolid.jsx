@@ -28,7 +28,6 @@ export default function RoundButtonSolid( props ) {
 }
 
 RoundButtonSolid.propTypes = {
-  to: PropTypes.string.isRequired,
   children: PropTypes.oneOfType( [
     PropTypes.node,
     PropTypes.arrayOf( PropTypes.node ),

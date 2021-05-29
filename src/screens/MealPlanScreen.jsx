@@ -9,7 +9,7 @@ import {
 import {
   Layout,
 } from '../components'
-import Utils from '../utils'
+import { openNewTab } from '../utils'
 
 export default function MealPlanScreen() {
   return (
@@ -31,7 +31,7 @@ export default function MealPlanScreen() {
           size="lg"
           my="24px"
           color="base.900"
-          onClick={() => Utils.openNewTab( 'https://airtable.com/shr2kADLOlovcK3xI' )}
+          onClick={() => openNewTab( 'https://airtable.com/shr2kADLOlovcK3xI' )}
         >
           Sign Up
         </Button>

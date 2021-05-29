@@ -50,7 +50,7 @@ export default BookingCard
 BookingCard.propTypes = {
   date: PropTypes.string,
   title: PropTypes.string,
-  imageUrl: PropTypes.func,
+  imageUrl: PropTypes.string,
   // price: PropTypes.number,
 }
 

@@ -14,10 +14,8 @@ import {
  */
 export default function imageForBedSpotName( bedSpotName ) {
   if ( typeof bedSpotName !== 'string' ) {
-    // eslint-disable-next-line max-len
     throw new Error( `[imageForBedSpotName] expected a string for the argument bedSpotName but received ${typeof bedSpotName}` )
   }
-  console.log( bedSpotName )
   if ( bedSpotName.trim().endsWith( 'Elizabeth Warren' ) ) return BedroomElizabethWarren
   if ( bedSpotName.trim().endsWith( 'Queen Bed In Mary Ashton' ) ) return BedroomMaryAshtonQueen
   if ( bedSpotName.trim().endsWith( 'Virginia Woolf' ) ) return BedroomVirginiaWoolf

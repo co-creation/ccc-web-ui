@@ -1,6 +1,9 @@
 import SignInForm from './SignInForm'
+import SetNewPasswordForm from './SetNewPasswordForm'
+import ResetPasswordForm from './ResetPasswordForm'
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   SignInForm,
+  SetNewPasswordForm,
+  ResetPasswordForm,
 }

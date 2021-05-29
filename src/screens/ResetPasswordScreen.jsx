@@ -7,9 +7,9 @@ import {
 } from '@chakra-ui/react'
 
 import { SignInBackground } from '../assets/images/index'
-import { SignInForm } from '../forms'
+import { ResetPasswordForm } from '../forms'
 
-export default function SignInScreen() {
+export default function ResetPasswordScreen() {
   const isMobile = useBreakpointValue( { base: true, md: false } )
 
   return (
@@ -38,13 +38,13 @@ export default function SignInScreen() {
           <Box
             p="12px"
             w="284px"
-            h="400px"
+            h="350px"
             borderWidth={1}
             borderRadius={8}
             boxShadow="lg"
             bg="base.25"
           >
-            <SignInForm />
+            <ResetPasswordForm />
           </Box>
         </Flex>
         )}
@@ -76,7 +76,7 @@ export default function SignInScreen() {
               align="center"
               justify="center"
             >
-              <SignInForm />
+              <ResetPasswordForm />
             </Box>
           </Flex>
         </Flex>

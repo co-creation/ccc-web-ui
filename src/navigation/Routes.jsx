@@ -8,13 +8,17 @@ import {
   CheckoutScreen,
   MealPlanScreen,
   PersonalDevelopmentScreen,
+  SetNewPasswordScreen,
+  ResetPasswordScreen,
 } from '../screens'
 import AuthenticatedRoute from './AuthenticatedRoute'
 
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/signin" component={SignInScreen} />
+      <Route exact path="/sign-in" component={SignInScreen} />
+      <Route exact path="/set-password" component={SetNewPasswordScreen} />
+      <Route exact path="/reset-password" component={ResetPasswordScreen} />
       <AuthenticatedRoute exact path="/home">
         <HomeScreen />
       </AuthenticatedRoute>

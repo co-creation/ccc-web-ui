@@ -26,7 +26,7 @@ export default function AuthenticatedRoute( { children, ...rest } ) {
         return (
           <Redirect
             to={{
-              pathname: '/signin',
+              pathname: '/sign-in',
               state: { from: location },
             }}
           />

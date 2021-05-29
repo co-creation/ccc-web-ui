@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {
   Flex,
   Box,
@@ -7,9 +6,9 @@ import {
 } from '@chakra-ui/react'
 
 import { SignInBackground } from '../assets/images/index'
-import { SignInForm } from '../forms'
+import { SetNewPasswordForm } from '../forms'
 
-export default function SignInScreen() {
+export default function SetNewPasswordScreen() {
   const isMobile = useBreakpointValue( { base: true, md: false } )
 
   return (
@@ -36,25 +35,21 @@ export default function SignInScreen() {
           }}
         >
           <Box
-            p="12px"
+            p="24px"
             w="284px"
-            h="400px"
+            h="625px"
             borderWidth={1}
             borderRadius={8}
             boxShadow="lg"
             bg="base.25"
           >
-            <SignInForm />
+            <SetNewPasswordForm />
           </Box>
         </Flex>
         )}
       {!isMobile
         && (
-        <Flex style={{
-          height: '100vh',
-          width: '100%',
-        }}
-        >
+        <Flex style={{ height: '100vh', width: '100%' }}>
           <Flex
             w="50vw"
             grow={1}
@@ -76,7 +71,7 @@ export default function SignInScreen() {
               align="center"
               justify="center"
             >
-              <SignInForm />
+              <SetNewPasswordForm />
             </Box>
           </Flex>
         </Flex>
