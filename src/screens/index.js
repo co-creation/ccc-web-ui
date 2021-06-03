@@ -3,6 +3,7 @@ import HomeScreen from './HomeScreen'
 import BookingScreen from './BookingScreen'
 import CheckoutScreen from './CheckoutScreen'
 import MealPlanScreen from './MealPlanScreen'
+import PersonalDevelopmentScreen from './PersonalDevelopmentScreen'
 
 export {
   SignInScreen,
@@ -10,4 +11,5 @@ export {
   BookingScreen,
   CheckoutScreen,
   MealPlanScreen,
+  PersonalDevelopmentScreen,
 }

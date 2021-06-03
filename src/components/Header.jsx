@@ -136,6 +136,9 @@ const Header = ( props ) => {
           <MenuItem to="/meal-plan">
             Meal Plan
           </MenuItem>
+          <MenuItem to="/personal-development">
+            Personal Development
+          </MenuItem>
           <MenuItem toExternal="https://www.co-creation.io/">
             Public Website
           </MenuItem>

@@ -49,7 +49,7 @@ export default function MealPlanScreen() {
           src="https://airtable.com/embed/shrMKIStXtCB29gQd?backgroundColor=yellow&viewControls=on"
           frameBorder="0"
           width="100%"
-          height="633"
+          height="633px"
           style={{
             background: 'transparent',
             border: '1px solid #ccc',
