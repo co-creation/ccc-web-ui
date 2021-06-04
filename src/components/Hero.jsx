@@ -55,11 +55,9 @@ export default function Hero( {
         <Link to={ctaLink}>
           <Button
             colorScheme="primary"
-            borderRadius="20px"
-            py="4"
-            px="4"
-            lineHeight="1"
-            size="md"
+            borderRadius="full"
+            color="base.900"
+            size="sm"
           >
             {ctaText}
           </Button>
