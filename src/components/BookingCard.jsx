@@ -30,7 +30,6 @@ function BookingCard( props ) {
         h="192px"
         borderTopRadius="lg"
         objectFit="cover"
-        bg="base.200"
       />
       <Box
         padding="16px"
@@ -40,7 +39,7 @@ function BookingCard( props ) {
         alignContent="flex-end"
       >
         <Text textStyle="bodyBold" color="base.800" paddingBottom="8px">{date}</Text>
-        <Text textStyle="h3" color="secondary.700" paddingBottom="8px">{title}</Text>
+        <Text textStyle="h3" color="base.800" paddingBottom="8px">{title}</Text>
       </Box>
     </Box>
   )
