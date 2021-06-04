@@ -56,10 +56,35 @@ const fonts = {
   body: 'Poppins',
 }
 
+const textStyles = {
+  h2: {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '32px',
+    lineHeight: '40px',
+  },
+  h3: {
+    fontFamily: 'Poppins',
+    fontSize: '24px',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    lineHeight: '32px',
+    textAlign: 'left',
+  },
+  bodyBold: {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontSize: '16px',
+    lineHeight: '24px',
+  },
+}
+
 const customTheme = extendTheme( {
   styles: { global: fonts },
   colors,
   fonts,
+  textStyles,
 } )
 
 export default customTheme

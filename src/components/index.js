@@ -1,3 +1,4 @@
+import BookingCard from './BookingCard'
 import ConfirmationAlertDialog from './ConfirmationAlertDialog'
 import Header from './Header'
 import Hero from './Hero'
@@ -8,6 +9,7 @@ import RoundButtonSolid from './RoundButtonSolid'
 import TextCard from './TextCard'
 
 export {
+  BookingCard,
   Header,
   Hero,
   Layout,
