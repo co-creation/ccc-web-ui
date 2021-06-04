@@ -214,6 +214,7 @@ export default function CheckoutScreen() {
         lineHeight="1"
         size="lg"
         mt="35"
+        color="base.900"
         disabled={!unpaidBooking}
         onClick={onStartCheckout}
       >

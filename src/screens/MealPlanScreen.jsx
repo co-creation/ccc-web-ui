@@ -1,23 +1,20 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-// import { useHistory } from 'react-router-dom'
 import {
   Heading,
   Text,
-  Flex,
   Button,
+  Container,
 } from '@chakra-ui/react'
 
 import {
   Layout,
 } from '../components'
-
 import Utils from '../utils'
 
 export default function MealPlanScreen() {
   return (
     <Layout>
-      <Flex flex="1" direction="column" w="100%" pl="10" pr="10">
+      <Container maxW="container.lg">
         <Heading m="5" mb="2" ml="0" as="h2" size="md">
           Sign up to Co-Chef
         </Heading>
@@ -31,11 +28,9 @@ export default function MealPlanScreen() {
         <Button
           colorScheme="primary"
           borderRadius="full"
-          py="6"
-          size="md"
+          size="sm"
           my="5"
-          minW="60"
-          maxW="120"
+          color="base.900"
           onClick={() => Utils.openNewTab( 'https://airtable.com/shr2kADLOlovcK3xI' )}
         >
           Sign Up
@@ -58,7 +53,7 @@ export default function MealPlanScreen() {
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
           }}
         />
-      </Flex>
+      </Container>
     </Layout>
   )
 }

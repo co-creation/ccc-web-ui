@@ -57,7 +57,7 @@ const fonts = {
 }
 
 const customTheme = extendTheme( {
-  styles: { global: fonts },
+  styles: { fonts },
   colors,
   fonts,
 } )

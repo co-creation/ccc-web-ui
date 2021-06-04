@@ -42,6 +42,7 @@ export default function ConfirmationAlertDialog( props ) {
         marginTop="10"
         marginBottom="10"
         size="lg"
+        color="base.900"
         {...rest}
       >
         {triggerText}
@@ -68,6 +69,7 @@ export default function ConfirmationAlertDialog( props ) {
                 <Button
                   borderRadius="full"
                   colorScheme="danger"
+                  color="white"
                   ref={cancelRef}
                   onClick={onClose}
                 >
@@ -76,6 +78,7 @@ export default function ConfirmationAlertDialog( props ) {
                 <Button
                   borderRadius="full"
                   colorScheme={destructive ? 'danger' : 'primary'}
+                  color="base.900"
                   onClick={onConfirmAction}
                   ml={3}
                 >

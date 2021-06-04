@@ -8,7 +8,7 @@ import {
   Button,
   Link as ChakraLink,
 } from '@chakra-ui/react'
-import { ExternalLinkIcon } from '@chakra-ui/icons' // eslint-ignore
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 import Logo from './Logo'
 import { useRealmApp } from '../RealmApp'
@@ -147,7 +147,7 @@ const Header = ( props ) => {
               onClick={app.logOut}
               size="sm"
               borderRadius="full"
-              color={['primary.500', 'primary.500', 'white', 'white']}
+              color={['base.900', 'base.900', 'base.900', 'base.900']}
               bg={['white', 'white', 'primary.500', 'primary.500']}
               _hover={{
                 bg: ['primary.100', 'primary.100', 'primary.600', 'primary.600'],

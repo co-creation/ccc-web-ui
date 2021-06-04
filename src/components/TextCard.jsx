@@ -12,7 +12,7 @@ function TextCard( props ) {
       borderWidth="1px"
       borderRadius="lg"
       overflow="wrap"
-      m="10px 0px 10px 0px"
+      m="0px 0px 16px 0px"
     >
       <Box m="5">
         <Heading m="5" mb="0" as="h4" size="md">

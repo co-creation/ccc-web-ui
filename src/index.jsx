@@ -8,13 +8,15 @@ import AppRoot from './AppRoot'
 import * as serviceWorker from './serviceWorker'
 import customTheme from './utils/theme'
 
+const reactRoot = document.getElementById( 'root' )
+
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={customTheme}>
       <AppRoot />
     </ChakraProvider>
   </React.StrictMode>,
-  document.getElementById( 'root' ),
+  reactRoot,
 )
 
 // If you want your app to work offline and load faster, you can change

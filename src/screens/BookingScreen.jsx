@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
-import { Button, HStack } from '@chakra-ui/react'
+import {
+  Button,
+  HStack,
+  Container,
+  Flex,
+} from '@chakra-ui/react'
 
 import { useAirtable } from '../airtable/AirtableApp'
 
@@ -55,15 +60,19 @@ export default function BookingScreen() {
 
   return (
     <Layout>
-      <Header
-        paymentRate={paymentRate}
-        hasOutstandingBooking={!!outstandingBooking}
-        deleteOustandingBooking={deleteOustandingBooking}
-      />
-      <AirtableViews
-        paymentRate={paymentRate}
-        hasOutstandingBooking={!!outstandingBooking}
-      />
+      <Container maxW="container.lg">
+        <Flex justify="center">
+          <Header
+            paymentRate={paymentRate}
+            hasOutstandingBooking={!!outstandingBooking}
+            deleteOustandingBooking={deleteOustandingBooking}
+          />
+        </Flex>
+        <AirtableViews
+          paymentRate={paymentRate}
+          hasOutstandingBooking={!!outstandingBooking}
+        />
+      </Container>
     </Layout>
   )
 }
@@ -103,6 +112,7 @@ function Header( props ) {
             px="10"
             lineHeight="1"
             size="md"
+            color="base.900"
             onClick={deleteOustandingBooking}
           >
             Start Over
@@ -154,7 +164,7 @@ function AirtableViews( props ) {
   }
 
   return (
-    <>
+    <Flex direction="column" justify="center">
       <iframe
         title="Available Bed Spots"
         className="airtable-embed"
@@ -167,7 +177,7 @@ function AirtableViews( props ) {
           border: '1px solid #ccc',
           borderRadius: 4,
           boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
-          margin: 24,
+          marginBottom: '16px',
         }}
       />
       <iframe
@@ -184,15 +194,17 @@ function AirtableViews( props ) {
           borderRadius: 4,
         }}
       />
-      <ConfirmationAlertDialog
-        onConfirm={() => history.push( '/booking/checkout' )}
-        headerText="Did you Submit your Booking Request?"
-        bodyText="This app is a work in progress, and we're just making sure you clicked 'Submit' on the Booking form before continuing. If you did, no worries — please continue! If not, please finish your booking request before proceeding to the Payment screen."
-        cancelText="I Still Need to Submit"
-        actionText="Continue to Payment"
-        triggerText="Continue to Payment"
-      />
-    </>
+      <Flex justify="center">
+        <ConfirmationAlertDialog
+          onConfirm={() => history.push( '/booking/checkout' )}
+          headerText="Did you Submit your Booking Request?"
+          bodyText="This app is a work in progress, and we're just making sure you clicked 'Submit' on the Booking form before continuing. If you did, no worries — please continue! If not, please finish your booking request before proceeding to the Payment screen."
+          cancelText="Submit First"
+          actionText="Continue to Payment"
+          triggerText="Continue to Payment"
+        />
+      </Flex>
+    </Flex>
   )
 }
 
