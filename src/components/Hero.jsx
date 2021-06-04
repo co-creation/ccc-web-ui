@@ -57,7 +57,7 @@ export default function Hero( {
             colorScheme="primary"
             borderRadius="full"
             color="base.900"
-            size="sm"
+            size="lg"
           >
             {ctaText}
           </Button>

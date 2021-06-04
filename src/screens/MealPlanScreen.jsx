@@ -28,8 +28,8 @@ export default function MealPlanScreen() {
         <Button
           colorScheme="primary"
           borderRadius="full"
-          size="sm"
-          my="5"
+          size="lg"
+          my="24px"
           color="base.900"
           onClick={() => Utils.openNewTab( 'https://airtable.com/shr2kADLOlovcK3xI' )}
         >

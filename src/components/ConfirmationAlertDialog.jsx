@@ -39,8 +39,8 @@ export default function ConfirmationAlertDialog( props ) {
         colorScheme={destructive ? 'danger' : 'primary'}
         onClick={onOpen}
         borderRadius="full"
-        marginTop="10"
-        marginBottom="10"
+        mt="32px"
+        mb="32px"
         size="lg"
         color="base.900"
         {...rest}

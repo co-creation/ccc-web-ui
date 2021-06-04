@@ -209,7 +209,6 @@ export default function CheckoutScreen() {
       <Button
         colorScheme="primary"
         borderRadius="full"
-        py="6"
         px="16"
         lineHeight="1"
         size="lg"
@@ -220,7 +219,7 @@ export default function CheckoutScreen() {
       >
         Pay
       </Button>
-      <VStack mt="10" px="4">
+      <VStack mt="10" px="4" mb="10">
         <Link
           color="blue"
           mt="5"
