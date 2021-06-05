@@ -79,19 +79,20 @@ export const AirtableProvider = ( { children } ) => {
       } catch ( err ) {
         setIsLoading( false )
         setError( err.message )
-        toast( {
-          title: 'Error getting your bookings',
-          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
-          status: 'error',
-          duration: 18000,
-          isClosable: true,
-        } )
+        // toast( {
+        //   title: 'Error getting your bookings',
+        //   description: `Error: ${err.message}.
+        // Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+        //   status: 'error',
+        //   duration: 18000,
+        //   isClosable: true,
+        // } )
         console.error( `Airtable API Server error fetching user bookings: ${err.message}` )
       }
     },
     // Realm is our primary auth, so we only perform Airtable actions
     // if the Realm auth session is valid
-    [realmUsername, realmAccessToken, toast],
+    [realmUsername, realmAccessToken],
   )
 
   const getBooking = useCallback(
@@ -113,19 +114,20 @@ export const AirtableProvider = ( { children } ) => {
       } catch ( err ) {
         setIsLoading( false )
         setError( err.message )
-        toast( {
-          title: 'Error getting your booking',
-          description: `Error: ${err.message}. Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
-          status: 'error',
-          duration: 18000,
-          isClosable: true,
-        } )
+        // toast( {
+        //   title: 'Error getting your booking',
+        //   description: `Error: ${err.message}.
+        // Screenshot this error and send it in the slack channel #ccc-help for assistance.`,
+        //   status: 'error',
+        //   duration: 18000,
+        //   isClosable: true,
+        // } )
         console.error( `Airtable API Server error fetching user booking ${recordId}: ${err.message}` )
       }
     },
     // Realm is our primary auth, so we only perform Airtable actions
     // if the Realm auth session is valid
-    [realmUsername, realmAccessToken, bookings, toast],
+    [realmUsername, realmAccessToken, bookings],
   )
 
   const deleteBooking = useCallback(

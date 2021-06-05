@@ -22,6 +22,7 @@ export default function LinkButton( props ) {
         px="4"
         lineHeight="1"
         size="md"
+        color="base.900"
         {...rest}
       >
         {children}

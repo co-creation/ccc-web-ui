@@ -4,8 +4,10 @@ import { useHistory } from 'react-router-dom'
 import {
   Button,
   HStack,
+  VStack,
   Container,
   Flex,
+  useToast,
 } from '@chakra-ui/react'
 
 import { useAirtable } from '../airtable/AirtableApp'
@@ -28,6 +30,10 @@ export default function BookingScreen() {
 
   const paymentRate = user?.['Payment Rate']?.[0]
   const [outstandingBooking, setOutstandingBooking] = useState( null )
+
+  const history = useHistory()
+
+  const toast = useToast()
 
   useEffect( () => {
     if ( paymentRate ) {
@@ -58,6 +64,22 @@ export default function BookingScreen() {
     await deleteBooking( outstandingBooking?.recordId )
   }
 
+  const onGoToCheckout = () => {
+    toast( {
+      title: 'One Moment While We Process Your Booking...',
+      status: 'info',
+      duration: 4500,
+      isClosable: true,
+    } )
+    setTimeout( getBookings, 1000 * 3 )
+    setTimeout(
+      () => {
+        history.push( '/booking/checkout' )
+      },
+      1000 * 5,
+    )
+  }
+
   return (
     <Layout>
       <Container maxW="container.lg">
@@ -71,6 +93,7 @@ export default function BookingScreen() {
         <AirtableViews
           paymentRate={paymentRate}
           hasOutstandingBooking={!!outstandingBooking}
+          onGoToCheckout={onGoToCheckout}
         />
       </Container>
     </Layout>
@@ -99,7 +122,7 @@ function Header( props ) {
 
   if ( hasOutstandingBooking ) {
     return (
-      <>
+      <VStack>
         <TextCard
           title="Pick up where you left off?"
           body="It looks like you already have a booking that you haven't paid for yet. To finalize your booking, click 'Complete Booking'. If you want to change your booking, click 'Start Over'. Incomplete bookings are cleared from the system periodically."
@@ -123,7 +146,7 @@ function Header( props ) {
             Complete Booking
           </LinkButton>
         </HStack>
-      </>
+      </VStack>
     )
   }
 
@@ -142,9 +165,7 @@ Header.defaultProps = {
 }
 
 function AirtableViews( props ) {
-  const { hasOutstandingBooking, paymentRate } = props
-
-  const history = useHistory()
+  const { hasOutstandingBooking, paymentRate, onGoToCheckout } = props
 
   if ( !paymentRate ) {
     return (
@@ -196,7 +217,7 @@ function AirtableViews( props ) {
       />
       <Flex justify="center">
         <ConfirmationAlertDialog
-          onConfirm={() => history.push( '/booking/checkout' )}
+          onConfirm={onGoToCheckout}
           headerText="Did you Submit your Booking Request?"
           bodyText="This app is a work in progress, and we're just making sure you clicked 'Submit' on the Booking form before continuing. If you did, no worries — please continue! If not, please finish your booking request before proceeding to the Payment screen."
           cancelText="Submit First"
@@ -209,11 +230,7 @@ function AirtableViews( props ) {
 }
 
 AirtableViews.propTypes = {
-  paymentRate: PropTypes.string,
-  hasOutstandingBooking: PropTypes.bool,
-}
-
-AirtableViews.defaultProps = {
-  paymentRate: null,
-  hasOutstandingBooking: false,
+  paymentRate: PropTypes.string.isRequired,
+  hasOutstandingBooking: PropTypes.bool.isRequired,
+  onGoToCheckout: PropTypes.func.isRequired,
 }
