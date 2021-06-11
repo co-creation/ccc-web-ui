@@ -22,7 +22,7 @@ export default function PersonalDevelopmentScreen() {
           Personal Development Tracks
         </Heading>
         <Text>
-          Wet&apos;re excited for you to co-create in our CCC Personal Development Tracks!
+          We&apos;re excited for you to co-create in our CCC Personal Development Tracks!
           Personal Development Tracks (PDTs) are a consistent experience 2+ Co-Creators
           go through during the CCC to focus on growing in their blooming intentions / personal
           development goals / dream activation.
