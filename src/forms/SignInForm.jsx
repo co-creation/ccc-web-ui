@@ -48,8 +48,8 @@ export default function SignInForm( ) {
   }
 
   function onSubmit( { email, password } ) {
-    handleLogin( email, password )
-    console.log( 'logging in...' )
+    handleLogin( email?.trim().toLowerCase(), password?.trim() )
+    console.log( `Signing in as: ${email}` )
   }
 
   return (
