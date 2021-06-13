@@ -130,6 +130,9 @@ const Header = ( props ) => {
           <MenuItem to="/home">
             Home
           </MenuItem>
+          <MenuItem to="/ccchat">
+            Chat
+          </MenuItem>
           <MenuItem to="/booking">
             Booking
           </MenuItem>

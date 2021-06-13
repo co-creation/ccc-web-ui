@@ -8,6 +8,7 @@ import {
   CheckoutScreen,
   MealPlanScreen,
   PersonalDevelopmentScreen,
+  ChatScreen,
 } from '../screens'
 import AuthenticatedRoute from './AuthenticatedRoute'
 
@@ -29,6 +30,9 @@ export default function Routes() {
       </AuthenticatedRoute>
       <AuthenticatedRoute exact path="/personal-development">
         <PersonalDevelopmentScreen />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute exact path="/ccchat">
+        <ChatScreen />
       </AuthenticatedRoute>
       {/* The redirect below should be the last route in the switch to catch all including '/' */}
       <Redirect to="/home" />
