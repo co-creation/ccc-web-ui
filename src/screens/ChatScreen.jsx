@@ -4,14 +4,14 @@ import {
   // Button,
   Container,
 } from '@chakra-ui/react'
-import { StreamChat } from 'stream-chat'
+// import { StreamChat } from 'stream-chat'
 // import {
 //   Chat,
 //   Channel,
 //   ChannelList, MessageList, MessageInput, Window,
 // } from 'stream-chat-react';
 
-import Config from '../Config'
+// import Config from '../Config'
 import { Layout } from '../components'
 // import Utils from '../utils'
 

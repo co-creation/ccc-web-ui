@@ -15,6 +15,7 @@ import Layout from '../components/Layout'
 import { BookingCard } from '../components'
 import Utils from '../utils'
 import imageSrc from '../assets/images/heroimage.jpeg'
+import { useChatAuth } from '../chat'
 
 export default function HomeScreen() {
   const history = useHistory()
@@ -22,6 +23,7 @@ export default function HomeScreen() {
   const [successNotified, setSuccessNotified] = useState( false )
   const { user: airtableUser, bookings, getUser } = useAirtable()
   const firstName = airtableUser?.['First Name']
+  const { getToken } = useChatAuth()
 
   useEffect( () => {
     const { search } = history.location
@@ -36,8 +38,9 @@ export default function HomeScreen() {
       } )
       setSuccessNotified( true )
       getUser()
+      getToken()
     }
-  }, [history, firstName, toast, successNotified, getUser] )
+  }, [history, firstName, toast, successNotified, getUser, getToken] )
 
   const welcomeText = firstName ? `Welcome Home, ${firstName}` : 'Welcome Home'
 
