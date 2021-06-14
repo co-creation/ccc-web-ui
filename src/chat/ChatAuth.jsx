@@ -8,8 +8,9 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import { useToast } from '@chakra-ui/react'
 
-import { useRealmApp } from '../RealmApp'
 import Config from '../Config'
+import { useRealmApp } from '../RealmApp'
+// import chatClient from './chatClient'
 
 const ChatAuthContext = React.createContext()
 
@@ -33,16 +34,15 @@ export const ChatAuthProvider = ( { children } ) => {
 
   const realmApp = useRealmApp()
   // eslint-disable-next-line no-underscore-dangle
-  const realmUsername = realmApp?.currentUser?._profile?.data?.email
+  const userId = realmApp?.currentUser?.id
   const realmAccessToken = realmApp.currentUser?.accessToken
-
   const getToken = useCallback(
     async () => {
       try {
         setIsLoading( true )
         const { data } = await axios( {
           method: 'get',
-          url: `${Config.CHAT_API_SERVER_URL}/user/${realmUsername}/token`,
+          url: `${Config.CHAT_API_SERVER_URL}/user/${userId}/token`,
           headers: {
             Authorization: `Bearer ${realmAccessToken}`,
           },
@@ -65,16 +65,25 @@ export const ChatAuthProvider = ( { children } ) => {
         console.error( `Chat API Server error: ${err.message}` )
       }
     },
-    [realmUsername, realmAccessToken, toast],
+    [userId, realmAccessToken, toast],
   )
 
   useEffect( () => {
-    if ( realmUsername && !token ) {
+    if ( userId && !token ) {
       getToken()
     }
-  }, [getToken, token, realmUsername] )
+  }, [getToken, token, userId] )
+
+  // useEffect( () => {
+  //   if ( !isConnected && token ) {
+  //     chatClient.connectUser( { id: userId }, token )
+  //     setConnected( true )
+  //   }
+  //   return () => chatClient.disconnectUser()
+  // }, [isConnected, token, userId] )
 
   const session = {
+    userId,
     getToken,
     token,
     issuedAt,
