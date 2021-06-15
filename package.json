@@ -28,6 +28,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^13.0.0",
+    "agora-rtc-sdk-ng": "^4.5.0",
     "axios": "^0.21.1",
     "framer-motion": "^3.10.5",
     "graphql": "^15.5.0",
